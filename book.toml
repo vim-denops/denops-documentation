@@ -1,0 +1,12 @@
+[book]
+authors = ["Alisue"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Denops Documentation"
+
+[build]
+build-dir = "docs"
+
+[preprocessor.plantuml]
+plantuml-cmd="http://www.plantuml.com/plantuml"
