@@ -5,6 +5,9 @@ multilingual = false
 src = "src"
 title = "Denops Documentation"
 
+[output.html]
+additional-css = ["theme/reference.css"]
+
 [build]
 build-dir = "docs"
 
