@@ -33,6 +33,6 @@ Then you can run:
 
 If the plugin has been registered successfully, you will see `Hello Vim!` as a result.
 
-![](https://storage.googleapis.com/zenn-user-upload/zcf4whdc44sa9k5a9s9gwk7gykyy)
+![](../img/calling-vimneovim-features-1.png)
 
 If you want to learn more details on `denops` API, you can refer to [denops-std API document](https://doc.deno.land/https/deno.land/x/denops_std/mod.ts#Denops).

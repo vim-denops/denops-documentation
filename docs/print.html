@@ -289,7 +289,7 @@ export async function main(denops: Denops): Promise&lt;void&gt; {
 </code></pre>
 <p>An argument <code>denops</code> is passed to the <code>main</code> function; where <code>denops</code> is an instance of <code>Denops</code> class exported from <a href="https://deno.land/x/denops_std">denops-std</a>.</p>
 <p>Then you restart vim, and you can see a message <code>[denops] Hello Denops!</code> on the vim window.</p>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/y8fyu6tap3tapjbxtltni6jynq8y" alt="" /></p>
+<p><img src="tutorial/../img/adding-a-skelton-of-denops-plugin-1.png" alt="" /></p>
 <p>If you are too lazy to restart vim, you can simply run <code>:call denops#server#restart()</code> on vim to reload Denops only.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="adding-an-api"><a class="header" href="#adding-an-api">Adding an API</a></h1>
 <p>Each Denops plugin registers one or more functions as APIs to Denops.
@@ -319,9 +319,9 @@ So you can use the <code>echo</code> API to execute the command below after rest
 <pre><code class="language-vim">:echo denops#request('helloworld', 'echo', [&quot;Hello Denops!&quot;])
 </code></pre>
 <p>If it goes well, you will see <code>Hello Denops!</code>.</p>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/2fyw9gsjs0mhxa132q2dkrz2yle3" alt="" /></p>
+<p><img src="tutorial/../img/adding-an-api-1.png" alt="" /></p>
 <p>If a non-string argument is passed to the <code>echo</code> API, such as <code>denops#request('helloworld', 'echo', [123])</code>, Denops will raise an error:</p>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/ykf75d9whbfjjntdk93jxcfmilsc" alt="" /></p>
+<p><img src="tutorial/../img/adding-an-api-2.png" alt="" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="calling-vimneovim-features"><a class="header" href="#calling-vimneovim-features">Calling Vim/Neovim Features</a></h1>
 <p>If you want to use a vim feature from your Denops plugin, you can call it via the <code>denops</code> instance passed to the plugin's <code>main</code> function.
 You can rewrite <code>main.ts</code> like below to register the <code>echo</code> API as a vim command:</p>
@@ -349,7 +349,7 @@ Then you can run:</p>
 <pre><code class="language-vim">:HelloWorldEcho Hello Vim!
 </code></pre>
 <p>If the plugin has been registered successfully, you will see <code>Hello Vim!</code> as a result.</p>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/zcf4whdc44sa9k5a9s9gwk7gykyy" alt="" /></p>
+<p><img src="tutorial/../img/calling-vimneovim-features-1.png" alt="" /></p>
 <p>If you want to learn more details on <code>denops</code> API, you can refer to <a href="https://doc.deno.land/https/deno.land/x/denops_std/mod.ts#Denops">denops-std API document</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="developing-more-applicative-plugin"><a class="header" href="#developing-more-applicative-plugin">Developing More Applicative Plugin</a></h1>
 <p>Now you have learned the basics of developing Denpos plugins in the previous sections.
@@ -380,7 +380,7 @@ export async function main(denops: Denops): Promise&lt;void&gt; {
 <pre><code class="language-vim">:Maze
 :mes
 </code></pre>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/dv98sl6ml57ppy0e4r50nol0gry6" alt="" /></p>
+<p><img src="tutorial/../img/developing-more-applicative-plugin-1.png" alt="" /></p>
 <p>Well done! But it is a little boring... So let's try to modify the code to make the maze output to a buffer.</p>
 <pre><code class="language-ts:main.ts">import { Denops } from &quot;https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts&quot;;
 import { Maze } from &quot;https://deno.land/x/maze_generator@v0.4.0/mod.js&quot;;
@@ -400,7 +400,7 @@ export async function main(denops: Denops): Promise&lt;void&gt; {
 </code></pre>
 <p>In this code, <code>denops.cmd()</code> calls the <code>enew</code> command of vim to open a new buffer in the current window and then <code>denops.call()</code> calls <code>setline()</code> to write the maze to the buffer.
 Restart Vim, rerun the commands, and then you can see:</p>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/ch1xyqz7i3k06c9bt33xokjee1pp" alt="" /></p>
+<p><img src="tutorial/../img/developing-more-applicative-plugin-2.png" alt="" /></p>
 <p>Awesome!
 Even if it looks like enough, you can improve your code a bit more.
 Here is an example of a modification that command other than <code>enew</code> can be passed to the plugin, a maze can be generated in the current display area, etc.:</p>
@@ -436,7 +436,7 @@ export async function main(denops: Denops): Promise&lt;void&gt; {
 };
 </code></pre>
 <p>Now you can see a small maze shown on the window.</p>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/nkd2tk0nwcwn0ww60ncbed4n3lwc" alt="" /></p>
+<p><img src="tutorial/../img/developing-more-applicative-plugin-3.png" alt="" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="developing-your-next-plugins"><a class="header" href="#developing-your-next-plugins">Developing Your Next Plugins</a></h1>
 <p>How do you feel about Denops plugin development?
 I think you could understand that you can create Vim/Neovim plugins with Denops so easily.

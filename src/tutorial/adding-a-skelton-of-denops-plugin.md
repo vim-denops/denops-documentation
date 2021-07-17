@@ -16,7 +16,7 @@ An argument `denops` is passed to the `main` function; where `denops` is an inst
 
 Then you restart vim, and you can see a message `[denops] Hello Denops!` on the vim window.
 
-![](https://storage.googleapis.com/zenn-user-upload/y8fyu6tap3tapjbxtltni6jynq8y)
+![](../img/adding-a-skelton-of-denops-plugin-1.png)
 
 [denops-std]: https://deno.land/x/denops_std
 

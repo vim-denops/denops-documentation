@@ -36,7 +36,7 @@ Restarting Vim, and you will see a maze by commands:
 :mes
 ```
 
-![](https://storage.googleapis.com/zenn-user-upload/dv98sl6ml57ppy0e4r50nol0gry6)
+![](../img/developing-more-applicative-plugin-1.png)
 
 Well done! But it is a little boring... So let's try to modify the code to make the maze output to a buffer.
 
@@ -61,7 +61,7 @@ export async function main(denops: Denops): Promise<void> {
 In this code, `denops.cmd()` calls the `enew` command of vim to open a new buffer in the current window and then `denops.call()` calls `setline()` to write the maze to the buffer.
 Restart Vim, rerun the commands, and then you can see:
 
-![](https://storage.googleapis.com/zenn-user-upload/ch1xyqz7i3k06c9bt33xokjee1pp)
+![](../img/developing-more-applicative-plugin-2.png)
 
 Awesome!
 Even if it looks like enough, you can improve your code a bit more.
@@ -102,4 +102,4 @@ export async function main(denops: Denops): Promise<void> {
 
 Now you can see a small maze shown on the window.
 
-![](https://storage.googleapis.com/zenn-user-upload/nkd2tk0nwcwn0ww60ncbed4n3lwc)
+![](../img/developing-more-applicative-plugin-3.png)

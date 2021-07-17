@@ -33,8 +33,8 @@ So you can use the `echo` API to execute the command below after restarting vim:
 
 If it goes well, you will see `Hello Denops!`.
 
-![](https://storage.googleapis.com/zenn-user-upload/2fyw9gsjs0mhxa132q2dkrz2yle3)
+![](../img/adding-an-api-1.png)
 
 If a non-string argument is passed to the `echo` API, such as `denops#request('helloworld', 'echo', [123])`, Denops will raise an error:
 
-![](https://storage.googleapis.com/zenn-user-upload/ykf75d9whbfjjntdk93jxcfmilsc)
+![](../img/adding-an-api-2.png)

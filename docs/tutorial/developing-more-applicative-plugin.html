@@ -172,7 +172,7 @@ export async function main(denops: Denops): Promise&lt;void&gt; {
 <pre><code class="language-vim">:Maze
 :mes
 </code></pre>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/dv98sl6ml57ppy0e4r50nol0gry6" alt="" /></p>
+<p><img src="../img/developing-more-applicative-plugin-1.png" alt="" /></p>
 <p>Well done! But it is a little boring... So let's try to modify the code to make the maze output to a buffer.</p>
 <pre><code class="language-ts:main.ts">import { Denops } from &quot;https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts&quot;;
 import { Maze } from &quot;https://deno.land/x/maze_generator@v0.4.0/mod.js&quot;;
@@ -192,7 +192,7 @@ export async function main(denops: Denops): Promise&lt;void&gt; {
 </code></pre>
 <p>In this code, <code>denops.cmd()</code> calls the <code>enew</code> command of vim to open a new buffer in the current window and then <code>denops.call()</code> calls <code>setline()</code> to write the maze to the buffer.
 Restart Vim, rerun the commands, and then you can see:</p>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/ch1xyqz7i3k06c9bt33xokjee1pp" alt="" /></p>
+<p><img src="../img/developing-more-applicative-plugin-2.png" alt="" /></p>
 <p>Awesome!
 Even if it looks like enough, you can improve your code a bit more.
 Here is an example of a modification that command other than <code>enew</code> can be passed to the plugin, a maze can be generated in the current display area, etc.:</p>
@@ -228,7 +228,7 @@ export async function main(denops: Denops): Promise&lt;void&gt; {
 };
 </code></pre>
 <p>Now you can see a small maze shown on the window.</p>
-<p><img src="https://storage.googleapis.com/zenn-user-upload/nkd2tk0nwcwn0ww60ncbed4n3lwc" alt="" /></p>
+<p><img src="../img/developing-more-applicative-plugin-3.png" alt="" /></p>
 
                     </main>
 
