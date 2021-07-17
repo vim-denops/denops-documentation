@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Install - Denops Documentation</title>
+        <title>Tutorial - Denops Documentation</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="install.html" class="active"><strong aria-hidden="true">1.</strong> Install</a></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">2.</strong> Tutorial</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorial/preparing-deno-and-denops.html"><strong aria-hidden="true">2.1.</strong> Preparing Deno and Denops</a></li><li class="chapter-item expanded "><a href="tutorial/developing-your-first-plugin.html"><strong aria-hidden="true">2.2.</strong> Developing Your First Plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorial/vim-configuration.html"><strong aria-hidden="true">2.2.1.</strong> Vim configration</a></li><li class="chapter-item expanded "><a href="tutorial/making-a-directory-tree.html"><strong aria-hidden="true">2.2.2.</strong> Making a Plugin Directory Tree</a></li><li class="chapter-item expanded "><a href="tutorial/adding-a-skelton-of-denops-plugin.html"><strong aria-hidden="true">2.2.3.</strong> Adding a Skelton of Denops Plugin</a></li><li class="chapter-item expanded "><a href="tutorial/adding-an-api.html"><strong aria-hidden="true">2.2.4.</strong> Adding an API</a></li><li class="chapter-item expanded "><a href="tutorial/calling-vimneovim-features.html"><strong aria-hidden="true">2.2.5.</strong> Calling Vim/Neovim Features</a></li><li class="chapter-item expanded "><a href="tutorial/developing-more-applicative-plugin.html"><strong aria-hidden="true">2.2.6.</strong> Developing More Applicative Plugin</a></li></ol></li><li class="chapter-item expanded "><a href="tutorial/developing-your-next-plugins.html"><strong aria-hidden="true">2.3.</strong> Developing Your Next Plugins</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="install.html"><strong aria-hidden="true">1.</strong> Install</a></li><li class="chapter-item expanded "><a href="tutorial.html" class="active"><strong aria-hidden="true">2.</strong> Tutorial</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorial/preparing-deno-and-denops.html"><strong aria-hidden="true">2.1.</strong> Preparing Deno and Denops</a></li><li class="chapter-item expanded "><a href="tutorial/developing-your-first-plugin.html"><strong aria-hidden="true">2.2.</strong> Developing Your First Plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tutorial/vim-configuration.html"><strong aria-hidden="true">2.2.1.</strong> Vim configration</a></li><li class="chapter-item expanded "><a href="tutorial/making-a-directory-tree.html"><strong aria-hidden="true">2.2.2.</strong> Making a Plugin Directory Tree</a></li><li class="chapter-item expanded "><a href="tutorial/adding-a-skelton-of-denops-plugin.html"><strong aria-hidden="true">2.2.3.</strong> Adding a Skelton of Denops Plugin</a></li><li class="chapter-item expanded "><a href="tutorial/adding-an-api.html"><strong aria-hidden="true">2.2.4.</strong> Adding an API</a></li><li class="chapter-item expanded "><a href="tutorial/calling-vimneovim-features.html"><strong aria-hidden="true">2.2.5.</strong> Calling Vim/Neovim Features</a></li><li class="chapter-item expanded "><a href="tutorial/developing-more-applicative-plugin.html"><strong aria-hidden="true">2.2.6.</strong> Developing More Applicative Plugin</a></li></ol></li><li class="chapter-item expanded "><a href="tutorial/developing-your-next-plugins.html"><strong aria-hidden="true">2.3.</strong> Developing Your Next Plugins</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -143,61 +143,33 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
-<p>Denops require the followings</p>
+                        <h1 id="tutorial"><a class="header" href="#tutorial">Tutorial</a></h1>
+<p>This article is a tutorial on developing Denops plugins.</p>
+<h2 id="environment"><a class="header" href="#environment">Environment</a></h2>
+<p>In this tutorial, we use the following software and version as of writing.</p>
 <ul>
-<li><a href="https://www.vim.org/">Vim</a> &gt;= 8.1.2424 or <a href="https://neovim.io/">Neovim</a> &gt;= 0.4.4</li>
-<li><a href="https://deno.land/">Deno</a> &gt;= 1.11.0</li>
+<li><a href="https://github.com/vim-denops/denops.vim/releases/tag/v1.0.0-beta.4">denops.vim v1.0.0-beta.4</a> (2021-07-11)</li>
+<li><a href="https://github.com/vim-denops/deno-denops-std/releases/tag/v1.0.0-beta.2">denops_std v1.0.0-beta.2</a> (2021-07-11)</li>
 </ul>
-<p>Make sure <code>deno</code> command is executable from your Vim/Neovim by:</p>
-<pre><code>:echo exepath('deno')
-</code></pre>
-<p>It would show an executable path of <code>deno</code> command. If nothing is shown, make sure the <code>$PATH</code> is correct in your Vim/Neovim.</p>
-<p>Use <code>g:denops#deno</code> if you'd like to specify deno executable manually like:</p>
-<pre><code class="language-vim">let g:denops#deno = '/opt/deno/bin/deno'
-</code></pre>
-<h2 id="install"><a class="header" href="#install">Install</a></h2>
-<p>Denops must be installed in a <code>runtimepath</code>, like a general Vim plugin.
-Install it with your favorite Vim plugin managers like:</p>
-<h3 id="by-a-hrefhttpsgithubcomjunegunnvim-plugvim-pluga"><a class="header" href="#by-a-hrefhttpsgithubcomjunegunnvim-plugvim-pluga">By <a href="https://github.com/junegunn/vim-plug">vim-plug</a></a></h3>
-<p>Add <code>vim-denops/denops.vim</code> like:</p>
-<pre><code>Plug 'vim-denops/denops.vim'
-</code></pre>
-<p>Then execute <code>:PlugInstall</code> to install.</p>
-<h3 id="by-a-hrefhttpsgithubcomk-takataminpacminpaca"><a class="header" href="#by-a-hrefhttpsgithubcomk-takataminpacminpaca">By <a href="https://github.com/k-takata/minpac">minpac</a></a></h3>
-<p>Add <code>vim-denops/denops.vim</code> like:</p>
-<pre><code>call minpac#add('vim-denops/denops.vim')
-</code></pre>
-<p>Then execute <code>:call minpac#update()</code> to install.</p>
-<h3 id="by-a-hrefhttpsgithubcomshougodeinvimdeinvima"><a class="header" href="#by-a-hrefhttpsgithubcomshougodeinvimdeinvima">By <a href="https://github.com/Shougo/dein.vim">dein.vim</a></a></h3>
-<p>Add <code>vim-denops/denops.vim</code> like:</p>
-<pre><code>call dein#add('vim-denops/denops.vim')
-</code></pre>
-<p>Then execute <code>:call dein#install()</code> to install.</p>
-<h2 id="check-health"><a class="header" href="#check-health">Check health</a></h2>
-<p>Denops support <code>:checkheath</code> (Neovim) or <code>:CheckHealth</code> (Vim with <a href="https://github.com/rhysd/vim-healthcheck">vim-healthcheck</a>) to check denops health like:</p>
-<pre><code>health#denops#check
-========================================================================
-  - INFO: Supported Deno version: `1.11.0`
-  - INFO: Detected Deno version: `1.11.5`
-  - OK: Deno version check: passed
-  - INFO: Supported Neovim version: `0.4.4`
-  - INFO: Detected Neovim version: `0.5.0`
-  - OK: Neovim version check: passed
-  - INFO: Denops status: `running`
-  - OK: Denops status check: passed
-</code></pre>
-<p>Execute those commands to investigate why denops does not work.</p>
+<h2 id="glossary"><a class="header" href="#glossary">Glossary</a></h2>
+<table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>vim</td><td>Vim or Neovim.</td></tr>
+<tr><td>vim plugin</td><td>Vim plugin or Neovim plugin.</td></tr>
+<tr><td><a href="https://deno.land/">Deno</a></td><td>A JavaScript and TypeScript runtime.</td></tr>
+<tr><td><a href="https://github.com/vim-denops/denops.vim">Denops</a></td><td>An ecosystem for vim plugins based on Deno runtime.</td></tr>
+<tr><td>Denops plugin</td><td>A vim plugin that works on both Vim and Neovim and is written with Denops.</td></tr>
+<tr><td><a href="https://github.com/vim-denops/denops.vim">denops.vim</a></td><td>The Name of the vim plugin to introduce Denops into vim.</td></tr>
+</tbody></table>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="install.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="tutorial.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="tutorial/preparing-deno-and-denops.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -207,11 +179,11 @@ Install it with your favorite Vim plugin managers like:</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="install.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="tutorial.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="tutorial/preparing-deno-and-denops.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
