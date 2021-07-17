@@ -1,74 +1,50 @@
----
-title: "Deno で Vim/Neovim のプラグインを書く (denops.vim)"
-emoji: "🐜"
-type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["vim", "neovim", "deno", "denops"]
-published: true
----
+# Tutorial
 
-:::message
-対象バージョン：
+This article is a tutorial on developing Denops plugins.
 
-[denops.vim v1.0.0-beta.4](https://github.com/vim-denops/denops.vim/releases/tag/v1.0.0-beta.4) (2021.07.11)
-[denops_std v1.0.0-beta.2](https://github.com/vim-denops/deno-denops-std/releases/tag/v1.0.0-beta.2) (2021.07.11)
-:::
+## Environment
 
-:::message
-ベータリリースに伴い、アルファ版を含む過去のバージョンに対するドキュメントは削除しました。
-過去のバージョンの情報を見たい方は [lambdalisue/zenn-articles](https://github.com/lambdalisue/zenn-articles/blob/master/articles/b4a31fba0b1ce95104c9.md) から参照してください。
-:::
-
-どうも、最近 Rust と Deno にハマってるありすえです。
-
-今日は [vim-jp][] で開発を開始した [denops.vim][] の紹介と denops.vim を利用したプラグイン作成のチュートリアルを書きたいと思います。
+In this tutorial, we use the following software and version as of writing.
+* [denops.vim v1.0.0-beta.4](https://github.com/vim-denops/denops.vim/releases/tag/v1.0.0-beta.4) (2021-07-11)
+* [denops_std v1.0.0-beta.2](https://github.com/vim-denops/deno-denops-std/releases/tag/v1.0.0-beta.2) (2021-07-11)
 
 [vim-jp]: https://vim-jp.org/
 [denops.vim]: https://github.com/vim-denops/denops.vim
-
-# denops.vim とは
-
-denops.vim は JavaScript/TypeScript のランタイムである [Deno][] を利用して Vim/Neovim 双方で動作するプラグインを作るためのエコシステムです。以下のような特徴があります。
-
-- Vim / Neovim で同一コードを利用可能
-- Vim プラグインとしてインストールが可能
-- Vim script と比較してエンジンが爆速なのでゴリ押しが可能
-- ユーザーによるライブラリの依存管理が不要
-- プラグインが別プロセスとして動作するため Vim が固まりにくい
-- プラグイン毎にスレッドが分かれているため相互干渉が起こりにくい
-
 [deno]: https://deno.land/
 
-# 用語集
+## Glossary
 
-| 用語              | 意味                                                                    |
-| ----------------- | ----------------------------------------------------------------------- |
-| Denops            | Deno をランタイムとして利用した Vim/Neovim のプラグインエコシステムです |
-| Denops プラグイン | Denops を用いて書かれた Vim/Neovim 双方で動作するプラグインを表します   |
+| Term                  | Meaning                                                                     |
+| --------------------- | --------------------------------------------------------------------------- |
+| vim                   | Vim or NeoVim.                                                          |
+| vim plugin            | Vim plugin or NeoVim plugin.                                            |
+| [Deno][]              | A JavaScript and TypeScript runtime.                                        |
+| [Denops][denops.vim]  | An ecosystem for vim plugins based on Deno runtime.                         |
+| Denops plugin         | A vim plugin that works on both Vim and NeoVim and is written with Denops.  |
+| [denops.vim][]        | The Name of the vim plugin to introduce Denops into vim.                      |
 
-# Denops のインストール
+## Preparation
 
-Denops プラグインを利用するためには Denops 自体をインストールする必要があります。
-これは Denops プラグインを利用するだけのユーザーも行う必要があります。
+First of all, whichever you want to either use or develop Denops plugins, you have to install tools; [Deno][] and [Denops][denops.vim] in addition to your vim.
 
-## 0. Deno のインストール
+### Installing Deno
 
-https://deno.land/#installation を参考に Deno をインストールしてください。
-Getting Started の以下のコマンドを実行して結果が帰ってくれば成功です。
+Deno can be installed to follow the instructions in the [Deno document](https://deno.land/#installation).
+In addition, you can check if Deno has been installed successfully by [the command](https://deno.land/#getting-started):
 
 ```sh
 deno run https://deno.land/std/examples/welcome.ts
 ```
 
-なお、既にインストール済みであれば、以下のコマンドで最新版にアップデートしてください。
+If you have already installed Deno, update it to the latest version.
 
 ```sh
 deno upgrade
 ```
 
-## 1. Denops のインストール
-
-通常の Vim プラグインとして [denops.vim][] をインストールしてください。
-例えば [vim-plug][] を利用している場合には `.vimrc` に以下のように記載してから `:PlugInstall` を実行します。
+### Installing Denops
+It is necessary for using Denops to install as a vim plugin [denops.vim][].
+For example, when you use [vim-plug][] as a vim plugin manager, add the following command to your `.vimrc` and execute `:PlugInstall` on vim to install Denops.
 
 ```vim
 Plug 'vim-denops/denops.vim'
@@ -76,47 +52,55 @@ Plug 'vim-denops/denops.vim'
 
 [vim-plug]: https://github.com/junegunn/vim-plug
 
-# 開発チュートリアル
+If you prefer another vim plugin manager, you can find instructions for it on the [Install](./install.md) page.
 
-ここから小さな Denops プラグインを実際に作ってみます。プラグイン名は `helloworld` でプラグインディレクトリはホーム直下の `dps-helloworld` と仮定します。
+Thus Deno and Denops are available in your environment.
 
-## 0. プラグイン開発前準備
+## Developing Your First Plugin
 
-Vim プラグインは Vim の `runtimepath` に存在している必要があります。Denops プラグインも Vim プラグインであるため、同様に `runtimepath` に存在する必要があります。そのため、以下を `.vimrc` に追記してください。
+Now you are ready to write a Denops plugin.
+It would be better to start by developing a small plugin.
+So we will name the plugin `helloworld` and place it under `~/dps-helloworld`.
+
+### Vim Configuration
+
+Vim plugins have to be located under a path in `runtimepath` on your vim configuration.
+Denops plugins also have to be placed in `runtimepath` because they are also vim plugins.
+To add the plugin path to your `.vimrc`, you write:
 
 ```vim
 set runtimepath^=~/dps-helloworld
 ```
 
-次に Deno の起動時型チェックなどを有効にするため Denops をデバッグモードで動作させます。
-以下を `.vimrc` に追記してください。
+The other setting to add to your `.vimrc` is to make Denops launch in debug mode to enable type checkings at startup of Deno:
 
 ```vim
 let g:denops#debug = 1
 ```
 
 :::message
-デバッグモードはパフォーマンス的な問題があります。開発が落ち着いたらデバッグモードを解除してください。
+Running Denops in debug mode has a performance problem.
+Once your development goes well, it would be better for you to disable the debug mode.
 :::
 
-## 1. プラグインディレクトリ構造の作成
+### Making a Plugin Directory Tree
 
-まず以下のコマンドで `~/dps-helloworld` を作成し、作業ディレクトリを変更します。
-Windows を利用している方は、適時コマンドを読み替えてください。
+Next, you have to make a directory `~/dps-helloworld` to store plugin codes and change the current working directory to it.
+If you use Windows, you should find and use equivalent commands.
 
 ```sh
 mkdir ~/dps-helloworld
 cd ~/dps-helloworld
 ```
 
-次に以下のコマンドで必要最低限のディレクトリ構造を作成します。
+Then make a minimum directory tree and a code file required by Denops at least:
 
 ```sh
 mkdir -p denops/helloworld
 touch denops/helloworld/main.ts
 ```
 
-最終的に以下のようなディレクトリ構造になっていれば OK です。
+Finally, you will get a directory tree like:
 
 ```
 dps-helloworld
@@ -125,35 +109,40 @@ dps-helloworld
         └── main.ts
 ```
 
-Denops は自動的に `runtimepath` 内の `denops/*/main.ts` を読み込みます。
-そのため上記のような構造が Denops プラグインの基本型となります。
 
-## 2. 骨組みの追加
+This directory tree is a basis for developing a Denops plugin; Denops loads `denops/*/main.ts` on `runtimepath` automatically after your vim starts up.
 
-Denops プラグインは `main.ts` がエクスポートする `main` 関数を呼び出します。なお、渡される `denops` という値は [denops-std][] がエクスポートしている `Denops` クラスのインスタンスです。したがって `main.ts` の内容を以下のように書き換えてください。
+### Adding a Skelton of Denops Plugin
+
+Once a Denops plugin is loaded, Denops calls the `main` function exported from `main.ts` of the plugin code.
+So initially you can write `main.ts` like:
 
 ```ts:main.ts
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
 
 export async function main(denops: Denops): Promise<void> {
-  // ここにプラグインの処理を記載する
+  // Plugin program starts from here
   console.log("Hello Denops!");
 };
 ```
 
-この状態で一度 Vim を再起動すると起動時に `[denops] Hello Denops!` が表示されます。
+An argument `denops` is passed to the `main` function; where `denops` is an instance of `Denops` class exported from [denops-std][].
+
+Then you restart vim, and you can see a message `[denops] Hello Denops!` on the vim window.
 
 ![](https://storage.googleapis.com/zenn-user-upload/y8fyu6tap3tapjbxtltni6jynq8y)
 
 [denops-std]: https://deno.land/x/denops_std
 
 :::message
-Vim を再起動するのが面倒な方は `:call denops#server#restart()` として Denops を再起動するのが良いです。
+If you are too lazy to restart vim, you can simply run `:call denops#server#restart()` on vim to reload Denops only.
 :::
 
-## 3. API の追加
+### Adding an API
 
-Denops では各プラグインが API を関数として登録します。まず、与えられた文字列を返却する `echo()` 関数を API として登録してみましょう。`main.ts` を以下のように書き直してください。
+Each Denops plugin registers one or more functions as APIs to Denops.
+First, try to write an `echo()` function that returns a given string and register it as an API.
+You can rewrite `main.ts` as follows:
 
 ```ts:main.ts
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
@@ -162,7 +151,7 @@ import { ensureString } from "https://deno.land/x/unknownutil@v0.1.1/mod.ts";
 export async function main(denops: Denops): Promise<void> {
   denops.dispatcher = {
     async echo(text: unknown): Promise<unknown> {
-      // `text` が string 型であることを保証する
+      // assure `text` is string type.
       ensureString(text);
       return await Promise.resolve(text);
     },
@@ -171,27 +160,32 @@ export async function main(denops: Denops): Promise<void> {
 ```
 
 :::message
-引数が全て `unknown` 型で戻り値が `Promise<unknown>` もしくは `Promise<void>` な関数のみ API として登録可能です。
+You can register a function that satisfies the following as an API:
+- All of its arguments must be `unknown`.
+- The type of return value must be either `Promise<unknown>` or `Promise<void>`.
+
 :::
 
-これで `echo` という API が `helloworld` というプラグインに登録されます。この API を呼び出すには `denops#request({plugin}, {func}, {args})` を利用します。Vim を再起動後以下のコマンドを実行してみてください。
+Thus an `echo` API is registered to the `helloworld` plugin.
+To call an API, you can use a vim command of the form `denops#request({plugin}, {func}, {args})`.
+So you can use the `echo` API to execute the command below after restarting vim:
 
 ```vim
 :echo denops#request('helloworld', 'echo', ["Hello Denops!"])
 ```
 
-これにより `Hello Denops!` が表示されれば成功です。
+If it goes well, you will see `Hello Denops!`.
 
 ![](https://storage.googleapis.com/zenn-user-upload/2fyw9gsjs0mhxa132q2dkrz2yle3)
 
-なお `denops#request('helloworld', 'echo', [123])` のように、文字列以外を与えると以下のようにエラーを吐きます。
+If a non-string argument is passed to the `echo` API, such as `denops#request('helloworld', 'echo', [123])`, Denops will raise an error:
 
 ![](https://storage.googleapis.com/zenn-user-upload/ykf75d9whbfjjntdk93jxcfmilsc)
 
-## 4. Vim 機能の呼び出し
+### Calling Vim/NeoVim Features
 
-Denops プラグインから Vim の機能を呼び出すには渡される `denops` インスタンスを利用します。
-先ほどの `echo` API を Vim のコマンドとして登録してみるので、以下のように `main.ts` を変更してください。
+If you want to use a vim feature from your Denops plugin, you can call it via the `denops` instance passed to the plugin's `main` function.
+You can rewrite `main.ts` like below to register the `echo` API as a Vim command:
 
 ```ts:main.ts
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
@@ -213,28 +207,33 @@ export async function main(denops: Denops): Promise<void> {
 };
 ```
 
-`execute()` は渡された複数行文字列を Vim script として実行します。また `denops.name` は実行中のプラグイン名を表します。これにより `HelloWorldEcho` コマンドが登録されるので Vim を再起動後以下のコマンドを実行してください。
+The helper function `execute()` receives a multiline string and executes it as a Vim script; where `denops.name` represents the name of the running plugin.
+Once vim is restarted, the HelloWorldEcho command will be registered.
+Then you can run:
 
 ```vim
 :HelloWorldEcho Hello Vim!
 ```
 
-これにより以下のように `Hello Vim!` が表示されれば成功です。
+If the plugin has been registered successfully, you will see `Hello Vim!` as a result.
 
 ![](https://storage.googleapis.com/zenn-user-upload/zcf4whdc44sa9k5a9s9gwk7gykyy)
 
-なお `denops` の詳細 API は https://doc.deno.land/https/deno.land/x/denops_std/mod.ts#Denops を参照してください。
+If you want to learn more details on `denops` API, you can refer to [denops-std API document](https://doc.deno.land/https/deno.land/x/denops_std/mod.ts#Denops).
 
-## 5. 実用的なプラグインの開発
+### Developing More Applicative Plugin
 
-ここまでで、基本的なプラグインの作り方は説明したので、次は実用的なプラグインを作ってみます。
+Now you have learned the basics of developing Denpos plugins in the previous sections.
+Then it would be best if you tried to create a more functional plugin.
 
-突然ですが、皆様はプログラミングしているときに突然迷路を解きたくなったことはありませんか？
-僕はありません。
-ただ、世の中には迷路が好きで好きでたまらない人もいるはずなので Vim からいつでも迷路を生成して表示できるプラグインを作ってみます。
+So let me ask you, out of the blue, have you ever itched to solve mazes while programming?
+I never have.
+In any case, there may be people who love solving mazes and can't get enough of it.
+So let's try to develop a Denops plugin that can generate and display a maze in vim at any time.
 
-迷路生成アルゴリズムから自作しても良いのですが、せっかく Deno を利用しているのでサードパーティの迷路生成ライブラリである [maze_generator](https://deno.land/x/maze_generator@v0.4.0) を使います。
-まず `HelloWorldEcho` コマンドと同様にして `Maze` コマンドを定義し、内部では迷路を生成して `console.log()` で出力します。
+Of course, it would be nice to start by coding a maze generation algorithm.
+However, you are now with Deno so that you can use a third-party library [maze_generator](https://deno.land/x/maze_generator@v0.4.0) for your convenience.
+First, you should define a `Maze` command similarly to `HelloWorldEcho`; `Maze` generates a maze and outputs it with `console.log()`.
 
 ```ts:main.ts
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
@@ -253,7 +252,7 @@ export async function main(denops: Denops): Promise<void> {
 };
 ```
 
-Vim を再起動し以下のコマンドで出力を確認すると迷路が生成できているのがわかります。
+Restarting Vim, and you will see a maze by commands:
 
 ```vim
 :Maze
@@ -262,7 +261,7 @@ Vim を再起動し以下のコマンドで出力を確認すると迷路が生�
 
 ![](https://storage.googleapis.com/zenn-user-upload/dv98sl6ml57ppy0e4r50nol0gry6)
 
-これで完成でもいいのですが、少し味気がないのでバッファに出力してみましょう。以下のようにプログラムを書き換えてください。
+Well done! But it is a little boring... So let's try to modify the code to make the maze output to a buffer.
 
 ```ts:main.ts
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
@@ -282,13 +281,14 @@ export async function main(denops: Denops): Promise<void> {
 };
 ```
 
-上記では `denops.cmd()` で Vim の `enew` コマンドを呼び出し新規バッファを現在の Window で開いた後 `denops.call()` で `setline()` 関数を呼ぶことでバッファに迷路を書き込んでいます。
-これを実行すると以下のようになります。
+In this code, `denops.cmd()` calls an `enew` command of vim to open a new buffer in the current window and then `denops.call()` calls `setline()` to write the maze to the buffer.
+Restart Vim, rerun the commands, and then you can see:
 
 ![](https://storage.googleapis.com/zenn-user-upload/ch1xyqz7i3k06c9bt33xokjee1pp)
 
-良い感じですね。
-これで終わりでもいいですが、せっかくなので `enew` 以外のコマンドを外部から与えられるようにしたり、現在の表示領域から迷路を生成したりなどいろいろ改良を加えて以下のようにしてみました。
+Awesome!
+Even if it looks like enough, you can improve your code a bit more.
+Here is an example of a modification that command other than `enew` can be passed to the plugin, a maze can be generated in the current display area, etc,:
 
 ```ts:main.ts
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
@@ -324,38 +324,23 @@ export async function main(denops: Denops): Promise<void> {
 ```
 
 :::message
-依存モジュールが増えてくると管理が煩雑になります。
-Denops 本体及び関連モジュール `deps.ts` および `deps_test.ts` で一括管理した上で [udd](https://github.com/hayd/deno-udd) というアップデートマネージャーでアップデート管理しています。
+Much more module dependencies make it harder for us to manage them.
+Denops manages modules by using Denops itself and its core modules: `deps.ts` and `deps_test.ts`; and Denops uses [udd](https://github.com/hayd/deno-udd) as a module update manager.
 :::
 
-ちゃんと小さな迷路ができてますね。
+Now you can see a small maze shown on the window.
 
 ![](https://storage.googleapis.com/zenn-user-upload/nkd2tk0nwcwn0ww60ncbed4n3lwc)
 
-## おわりに
+## Developing Your Next Plugins
 
-どうでしょう？Denops を利用すると、かなり簡単に Vim/Neovim で動くプラグインが作れると思いませんか？
-まだまだ開発中ですが Vim/Neovim 双方で効率的に動くポータビリティが高いエコシステムになっていると思います。
-よければ、このチュートリアルと以下のドキュメントを参考に Denops プラグインを作ってみてください。
+How do you feel about Denops plugin development?
+I think you could understand that you can create Vim/Neovim plugins with Denops so easily.
+Denops is a fantastic portable ecosystem for Vim/NeoVim plugins, though it is going under development.
+If you are interested in creating Denops plugins, this tutorial and the following documents will help you.
 
-- [denops-std API ドキュメント](https://doc.deno.land/https/deno.land/x/denops_std/mod.ts)
-- [denops サンプルプロジェクト](https://github.com/vim-denops/denops-helloworld.vim)
-- [denops 開発チャネル (vim-jp Slack)](https://vim-jp.slack.com/archives/C01N4L5362D)
+- [denops-std API Document](https://doc.deno.land/https/deno.land/x/denops_std/mod.ts)
+- [denops Sample Project](https://github.com/vim-denops/denops-helloworld.vim)
+- [denops Developer's Channel (vim-jp Slack)](https://vim-jp.slack.com/archives/C01N4L5362D)
 
-皆様のフィードバックをお待ちしております 🙇
-
-# ポエム：開発動機
-
-今 Vim/Neovim の関係は大きな変貌期にいます。
-
-Vim 側は Vim script の欠点を補った新しい言語である Vim 9 script の開発を進めており Neovim 側は Vim script を完全に捨てて Lua に移行しようとしています。
-
-このように Vim/Neovim の乖離が大きく広がっており、双方で動作するプラグインを書くのが非常に難しくなってきている状態です。
-
-そんな中 [coc.nvim][] はランタイムに Node.js を採用し Vim/Neovim のプラグイン機構の **外** で独自のエコシステムを展開することで Vim/Neovim 双方をサポートすることを可能にしています。
-
-しかし coc.nvim が採用している Node.js は依存管理が複雑なため、プラグインとして利用するにはビルドが必要だったりと、エコシステムとして使い勝手が良いものではありません。
-
-そのため依存管理を内包し、バイナリ一つがあれば動作する Deno をベースにすれば Vim/Neovim 双方で動作し、開発も簡単なエコシステムができるのではないか？と思い開発に踏み切りました。
-
-[coc.nvim]: https://github.com/neoclide/coc.nvim
+We are looking forward to your feedback and contributions to our development. 🙇
