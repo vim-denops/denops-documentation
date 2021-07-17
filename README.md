@@ -3,7 +3,7 @@
 This repo is the source of documentation of `denops.vim`.
 
 Generated documentation is [here](https://vim-denops.github.io/denops-documentation/).
-If you learn it in Japanese, read an [article](https://zenn.dev/lambdalisue/articles/b4a31fba0b1ce95104c9) written by `Alisue`(@lambdarisue), the original author of `denops.vim`.
+If you learn it in Japanese, read an [article](https://zenn.dev/lambdalisue/articles/b4a31fba0b1ce95104c9) written by `Alisue`(@lambdalisue), the original author of `denops.vim`.
 
 ## How to contribute
 
