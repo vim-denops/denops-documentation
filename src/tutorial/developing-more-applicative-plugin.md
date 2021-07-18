@@ -29,7 +29,7 @@ export async function main(denops: Denops): Promise<void> {
 };
 ```
 
-Restarting Vim, and you will see a maze by commands:
+Restarting vim, and you will see a maze by commands:
 
 ```vim
 :Maze
@@ -38,7 +38,7 @@ Restarting Vim, and you will see a maze by commands:
 
 ![](../img/developing-more-applicative-plugin-1.png)
 
-Well done! But it is a little boring... So let's try to modify the code to make the maze output to a buffer.
+Well done! But it is a little boring... So let's try to modify the code to make a generated maze output to a buffer.
 
 ```ts:main.ts
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
@@ -58,14 +58,14 @@ export async function main(denops: Denops): Promise<void> {
 };
 ```
 
-In this code, `denops.cmd()` calls the `enew` command of vim to open a new buffer in the current window and then `denops.call()` calls `setline()` to write the maze to the buffer.
-Restart Vim, rerun the commands, and then you can see:
+In this code, `denops.cmd()` executes the vim command `enew` to open a new buffer in the current window and then `denops.call()` calls the vim function `setline()` to write the maze to the buffer.
+Restart vim, rerun the commands, and then you can see:
 
 ![](../img/developing-more-applicative-plugin-2.png)
 
 Awesome!
 Even if it looks like enough, you can improve your code a bit more.
-Here is an example of a modification that command other than `enew` can be passed to the plugin, a maze can be generated in the current display area, etc.:
+Here is an example of a modification so that the `Maze` command can receive a vim command other than `enew`, make a produced maze fit the current display area, etc.:
 
 ```ts:main.ts
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
@@ -100,6 +100,6 @@ export async function main(denops: Denops): Promise<void> {
 };
 ```
 
-Now you can see a small maze shown on the window.
+Now you can see a smaller maze shown on the window.
 
 ![](../img/developing-more-applicative-plugin-3.png)

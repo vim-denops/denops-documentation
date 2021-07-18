@@ -21,4 +21,4 @@ In this tutorial, we use the following software and version as of writing.
 | [Deno][]              | A JavaScript and TypeScript runtime.                                        |
 | [Denops][denops.vim]  | An ecosystem for vim plugins based on Deno runtime.                         |
 | Denops plugin         | A vim plugin that works on both Vim and Neovim and is written with Denops.  |
-| [denops.vim][]        | The Name of the vim plugin to introduce Denops into vim.                      |
+| [denops.vim][]        | The name of the vim plugin to introduce Denops into vim.                      |

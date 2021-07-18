@@ -1,4 +1,4 @@
-# Vim Configuration
+# Vim/Neovim Configuration
 
 Vim plugins have to be located under a path in `runtimepath` on your vim configuration.
 Denops plugins also have to be placed in `runtimepath` because they are also vim plugins.

@@ -24,5 +24,4 @@ dps-helloworld
         └── main.ts
 ```
 
-
 This directory tree is a basis for developing a Denops plugin; Denops loads `denops/*/main.ts` on `runtimepath` automatically after your vim starts up.

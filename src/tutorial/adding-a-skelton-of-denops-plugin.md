@@ -12,7 +12,7 @@ export async function main(denops: Denops): Promise<void> {
 };
 ```
 
-An argument `denops` is passed to the `main` function; where `denops` is an instance of `Denops` class exported from [denops-std][].
+An argument `denops` is passed to the `main` function, where `denops` is an instance of `Denops` class exported from [denops-std][].
 
 Then you restart vim, and you can see a message `[denops] Hello Denops!` on the vim window.
 
