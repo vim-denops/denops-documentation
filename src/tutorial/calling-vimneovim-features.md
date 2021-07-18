@@ -1,7 +1,8 @@
 # Calling Vim/Neovim Features
 
-If you want to use a vim feature from your Denops plugin, you can call it via the `denops` instance passed to the plugin's `main` function.
-You can rewrite `main.ts` like below to register the `echo` API as a vim command:
+If you want to use a vim feature from your Denops plugin, you can call it via
+the `denops` instance passed to the plugin's `main` function. You can rewrite
+`main.ts` like below to register the `echo` API as a vim command:
 
 ```ts:main.ts
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
@@ -23,16 +24,19 @@ export async function main(denops: Denops): Promise<void> {
 };
 ```
 
-The helper function `execute()` receives a multiline string and executes it as a Vim script, where `denops.name` represents the name of the running plugin itself.
-Once vim is restarted, the `HelloWorldEcho` command will be registered.
+The helper function `execute()` receives a multiline string and executes it as a
+Vim script, where `denops.name` represents the name of the running plugin
+itself. Once vim is restarted, the `HelloWorldEcho` command will be registered.
 Then you can run:
 
 ```vim
 :HelloWorldEcho Hello Vim!
 ```
 
-If the plugin has been registered successfully, you will see `Hello Vim!` as a result.
+If the plugin has been registered successfully, you will see `Hello Vim!` as a
+result.
 
 ![](../img/calling-vimneovim-features-1.png)
 
-If you want to learn more details on `denops` API, you can refer to [denops-std API document](https://doc.deno.land/https/deno.land/x/denops_std/mod.ts#Denops).
+If you want to learn more details on `denops` API, you can refer to
+[denops-std API document](https://doc.deno.land/https/deno.land/x/denops_std/mod.ts#Denops).

@@ -2,8 +2,8 @@
 
 Denops require the followings
 
-- [Vim][] >= 8.1.2424 or [Neovim][] >= 0.4.4
-- [Deno][] >= 1.11.0
+- [Vim][Vim] >= 8.1.2424 or [Neovim][Neovim] >= 0.4.4
+- [Deno][Deno] >= 1.11.0
 
 Make sure `deno` command is executable from your Vim/Neovim by:
 
@@ -11,7 +11,8 @@ Make sure `deno` command is executable from your Vim/Neovim by:
 :echo exepath('deno')
 ```
 
-It would show an executable path of `deno` command. If nothing is shown, make sure the `$PATH` is correct in your Vim/Neovim.
+It would show an executable path of `deno` command. If nothing is shown, make
+sure the `$PATH` is correct in your Vim/Neovim.
 
 Use `g:denops#deno` if you'd like to specify deno executable manually like:
 
@@ -25,10 +26,10 @@ let g:denops#deno = '/opt/deno/bin/deno'
 
 ## Install
 
-Denops must be installed in a `runtimepath`, like a general Vim plugin.
-Install it with your favorite Vim plugin managers like:
+Denops must be installed in a `runtimepath`, like a general Vim plugin. Install
+it with your favorite Vim plugin managers like:
 
-### By [vim-plug][]
+### By [vim-plug][vim-plug]
 
 Add `vim-denops/denops.vim` like:
 
@@ -40,7 +41,7 @@ Then execute `:PlugInstall` to install.
 
 [vim-plug]: https://github.com/junegunn/vim-plug
 
-### By [minpac][]
+### By [minpac][minpac]
 
 Add `vim-denops/denops.vim` like:
 
@@ -52,7 +53,7 @@ Then execute `:call minpac#update()` to install.
 
 [minpac]: https://github.com/k-takata/minpac
 
-### By [dein.vim][]
+### By [dein.vim][dein.vim]
 
 Add `vim-denops/denops.vim` like:
 
@@ -66,7 +67,8 @@ Then execute `:call dein#install()` to install.
 
 ## Check health
 
-Denops support `:checkheath` (Neovim) or `:CheckHealth` (Vim with [vim-healthcheck][]) to check denops health like:
+Denops support `:checkheath` (Neovim) or `:CheckHealth` (Vim with
+[vim-healthcheck][vim-healthcheck]) to check denops health like:
 
 ```
 health#denops#check
