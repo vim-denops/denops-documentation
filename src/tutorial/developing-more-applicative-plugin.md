@@ -15,7 +15,7 @@ convenience. First, you should define a `Maze` command similarly to
 `HelloWorldEcho`; `Maze` generates a maze and outputs it with `console.log()`.
 
 ```ts:main.ts
-import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
 
 export async function main(denops: Denops): Promise<void> {
@@ -44,7 +44,7 @@ Well done! But it is a little boring... So let's try to modify the code to make
 a generated maze output to a buffer.
 
 ```ts:main.ts
-import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
 
 export async function main(denops: Denops): Promise<void> {
@@ -74,8 +74,8 @@ vim command other than `enew`, make a produced maze fit the current display
 area, etc.:
 
 ```ts:main.ts
-import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v1.0.0-beta.2/helper/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v1.0.0/helper/mod.ts";
 import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
 import { ensureString } from "https://deno.land/x/unknownutil@v0.1.1/mod.ts";
 

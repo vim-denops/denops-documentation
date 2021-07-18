@@ -5,8 +5,8 @@ the `denops` instance passed to the plugin's `main` function. You can rewrite
 `main.ts` like below to register the `echo` API as a vim command:
 
 ```ts:main.ts
-import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v1.0.0-beta.2/helper/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v1.0.0/helper/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v0.1.1/mod.ts";
 
 export async function main(denops: Denops): Promise<void> {
