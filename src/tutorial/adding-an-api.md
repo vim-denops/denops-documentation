@@ -5,7 +5,7 @@ to write an `echo()` function that returns a given string and register it as an
 API. You can rewrite `main.ts` as follows:
 
 ```ts:main.ts
-import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v0.1.1/mod.ts";
 
 export async function main(denops: Denops): Promise<void> {

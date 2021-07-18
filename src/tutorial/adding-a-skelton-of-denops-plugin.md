@@ -4,7 +4,7 @@ Once a Denops plugin is loaded, Denops calls the `main` function exported from
 `main.ts` of the plugin code. So initially you can write `main.ts` like:
 
 ```ts:main.ts
-import { Denops } from "https://deno.land/x/denops_std@v1.0.0-beta.2/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 
 export async function main(denops: Denops): Promise<void> {
   // Plugin program starts from here
