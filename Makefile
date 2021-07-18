@@ -13,10 +13,10 @@ tools: FORCE	## Install development tools
 	@cargo install mdbook-plantuml --root ${TOOLS}
 
 fmt: FORCE	## Format code
-	@deno fmt --ignore=docs
+	@deno fmt src README.md
 
 fmt-check: FORCE	## Format check
-	@deno fmt --ignore=docs --check
+	@deno fmt --check src README.md
 
 gen: FORCE	## Generate codes
 	@${TOOLS}/bin/mdbook build
