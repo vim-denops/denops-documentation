@@ -162,8 +162,8 @@ export async function main(denops: Denops): Promise&lt;void&gt; {
 </code></pre>
 <p>Note that you can register a function that satisfies the following as an API:</p>
 <ul>
-<li>All of its arguments must be <code>unknown</code>.</li>
-<li>The type of return value must be either <code>Promise&lt;unknown&gt;</code> or <code>Promise&lt;void&gt;</code>.</li>
+<li>All of its arguments must be of type <code>unknown</code>.</li>
+<li>The type of its return value must be either <code>Promise&lt;unknown&gt;</code> or <code>Promise&lt;void&gt;</code>.</li>
 </ul>
 <p>Thus an <code>echo</code> API is registered to the <code>helloworld</code> plugin.
 To call an API, you can use a vim command of the form <code>denops#request({plugin}, {func}, {args})</code>.

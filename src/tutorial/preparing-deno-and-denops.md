@@ -14,7 +14,7 @@ In addition, you can check if Deno has been installed successfully by [the comma
 deno run https://deno.land/std/examples/welcome.ts
 ```
 
-If you have already installed Deno, update it to the latest version.
+If you have already installed Deno, upgrade it to the latest version.
 
 ```sh
 deno upgrade

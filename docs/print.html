@@ -227,7 +227,7 @@ Install it with your favorite Vim plugin managers like:</p>
 In addition, you can check if Deno has been installed successfully by <a href="https://deno.land/#getting-started">the command</a>:</p>
 <pre><code class="language-sh">deno run https://deno.land/std/examples/welcome.ts
 </code></pre>
-<p>If you have already installed Deno, update it to the latest version.</p>
+<p>If you have already installed Deno, upgrade it to the latest version.</p>
 <pre><code class="language-sh">deno upgrade
 </code></pre>
 <h2 id="installing-denops"><a class="header" href="#installing-denops">Installing Denops</a></h2>
@@ -310,8 +310,8 @@ export async function main(denops: Denops): Promise&lt;void&gt; {
 </code></pre>
 <p>Note that you can register a function that satisfies the following as an API:</p>
 <ul>
-<li>All of its arguments must be <code>unknown</code>.</li>
-<li>The type of return value must be either <code>Promise&lt;unknown&gt;</code> or <code>Promise&lt;void&gt;</code>.</li>
+<li>All of its arguments must be of type <code>unknown</code>.</li>
+<li>The type of its return value must be either <code>Promise&lt;unknown&gt;</code> or <code>Promise&lt;void&gt;</code>.</li>
 </ul>
 <p>Thus an <code>echo</code> API is registered to the <code>helloworld</code> plugin.
 To call an API, you can use a vim command of the form <code>denops#request({plugin}, {func}, {args})</code>.
