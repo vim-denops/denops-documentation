@@ -7,9 +7,9 @@ This article is a tutorial on developing Denops plugins.
 In this tutorial, we use the following software and version as of writing.
 
 - [denops.vim v1.0.0](https://github.com/vim-denops/denops.vim/releases/tag/v1.0.0)
-  (2021-07-11)
+  (2021-07-19)
 - [denops_std v1.0.0](https://github.com/vim-denops/deno-denops-std/releases/tag/v1.0.0)
-  (2021-07-11)
+  (2021-07-19)
 
 [vim-jp]: https://vim-jp.org/
 [denops.vim]: https://github.com/vim-denops/denops.vim
