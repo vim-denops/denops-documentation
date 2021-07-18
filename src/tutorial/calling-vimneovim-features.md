@@ -24,7 +24,7 @@ export async function main(denops: Denops): Promise<void> {
 ```
 
 The helper function `execute()` receives a multiline string and executes it as a Vim script; where `denops.name` represents the name of the running plugin.
-Once vim is restarted, the HelloWorldEcho command will be registered.
+Once vim is restarted, the `HelloWorldEcho` command will be registered.
 Then you can run:
 
 ```vim

@@ -31,6 +31,6 @@ Plug 'vim-denops/denops.vim'
 
 [vim-plug]: https://github.com/junegunn/vim-plug
 
-If you prefer another vim plugin manager, you can find instructions for it on the [Install](./install.md) page.
+If you prefer another vim plugin manager, you can find instructions for it on the [Install](../install.md) page.
 
 Thus Deno and Denops are available in your environment.
