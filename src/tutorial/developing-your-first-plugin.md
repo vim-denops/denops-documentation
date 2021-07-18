@@ -1,8 +1,8 @@
 # Developing Your First Plugin
 
-Now you are ready to write a Denops plugin.
-It would be better to start by developing a small plugin.
-So we will name the plugin `helloworld` and place it under `~/dps-helloworld`.
+Now you are ready to write a Denops plugin. It would be better to start by
+developing a small plugin. So we will name the plugin `helloworld` and place it
+under `~/dps-helloworld`.
 
 - [Vim/Neovim Configuration](./vimneovim-configuration.md)
 - [Making a Plugin Directory Tree](./making-a-directory-tree.md)

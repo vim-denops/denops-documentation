@@ -1,7 +1,8 @@
 # Making a Plugin Directory Tree
 
-Next, you have to make a directory `~/dps-helloworld` to store plugin codes and change the current working directory to it.
-If you use Windows, you should find and use equivalent commands.
+Next, you have to make a directory `~/dps-helloworld` to store plugin codes and
+change the current working directory to it. If you use Windows, you should find
+and use equivalent commands.
 
 ```sh
 mkdir ~/dps-helloworld
@@ -24,4 +25,5 @@ dps-helloworld
         └── main.ts
 ```
 
-This directory tree is a basis for developing a Denops plugin; Denops loads `denops/*/main.ts` on `runtimepath` automatically after your vim starts up.
+This directory tree is a basis for developing a Denops plugin; Denops loads
+`denops/*/main.ts` on `runtimepath` automatically after your vim starts up.
