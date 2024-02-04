@@ -2,21 +2,18 @@ name: Test
 
 env:
   DENO_VERSION: 1.x
+  MDBOOK_VERSION: 0.4.36
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.cargo/bin/
@@ -26,17 +23,18 @@ jobs:
             target/
             .tools/
           key: ${{ runner.os }}-cargo
-      - uses: denoland/setup-deno@main
+      - uses: denoland/setup-deno@v1.1.4
         with:
           deno-version: ${{ env.DENO_VERSION }}
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-      - name: Format
-        run: make fmt-check
-      - name: Install tools
-        run: make tools
-      - name: Generate
+      - name: Install mdBook
         run: |
-          make gen
-          git diff --check
+          curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
+          rustup update
+          cargo install --version ${MDBOOK_VERSION} mdbook
+          cargo install mdbook-alerts
+      - name: Build with mdBook
+        run: mdbook build
+      - name: Format
+        run: deno fmt --check
+      - name: Misspell
+        uses: reviewdog/action-misspell@v1.15.0

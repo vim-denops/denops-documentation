@@ -1,6 +1,7 @@
-# Denops Documentation
+# denops-documentation
 
 [![Test](https://github.com/vim-denops/denops-documentation/actions/workflows/test.yml/badge.svg)](https://github.com/vim-denops/denops-documentation/actions/workflows/test.yml)
+[![Deploy](https://github.com/vim-denops/denops-documentation/actions/workflows/mdbook.yml/badge.svg)](https://github.com/vim-denops/denops-documentation/actions/workflows/mdbook.yml)
 [![Documentation](https://img.shields.io/badge/denops-Documentation-yellow.svg)](https://vim-denops.github.io/denops-documentation/)
 
 This is an official documentation of [denops.vim], an ecosystem of Vim/Neovim
