@@ -1,10 +1,11 @@
-# Denops Documentation
+# denops-documentation
 
 [![Test](https://github.com/vim-denops/denops-documentation/actions/workflows/test.yml/badge.svg)](https://github.com/vim-denops/denops-documentation/actions/workflows/test.yml)
+[![Deploy](https://github.com/vim-denops/denops-documentation/actions/workflows/mdbook.yml/badge.svg)](https://github.com/vim-denops/denops-documentation/actions/workflows/mdbook.yml)
 [![Documentation](https://img.shields.io/badge/denops-Documentation-yellow.svg)](https://vim-denops.github.io/denops-documentation/)
 
-This is an official documentation of [denops.vim][denops.vim], an ecosystem of
-Vim/Neovim which allows developers to write plugins in [Deno][Deno].
+This is an official documentation of [denops.vim], an ecosystem of Vim/Neovim
+which allows developers to write plugins in [Deno].
 
 [denops.vim]: https://github.com/vim-denops/denops.vim
 [deno]: https://deno.land
@@ -20,26 +21,31 @@ To contribute, install the latest versions of the followings in your environment
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Deno](https://deno.land/)
 
-Then, install [mdBook](https://github.com/rust-lang/mdBook) and its plugins in
-`.tools` directory by
+Then, install [mdBook](https://github.com/rust-lang/mdBook) and its plugins
 
 ```
-make tools
+cargo install mdbook
+cargo install mdbook-alerts
 ```
 
-Once required tools are installed, execute the following command to generate
-static files in [`./docs`](./docs) from markdown files in [`./src`](./src).
+Once required tools are installed, execute the following command to serve the
+book on http://localhost:3000
 
 ```
-make gen
+mdbook serve
 ```
 
-Note that all markdown files are formatted with
-[Deno's code formatter](https://deno.land/manual/tools/formatter) and checked by
-CI thus make sure to format codes by the following command
+Or build book into `book` directory
 
 ```
-make fmt
+mdbook build
+```
+
+Don't forget to format Markdown files with `deno fmt` before sending a pull
+request.
+
+```
+deno fmt
 ```
 
 ## See also

@@ -5,5 +5,4 @@ multilingual = false
 src = "src"
 title = "Denops Documentation"
 
-[preprocessor.plantuml]
-plantuml-cmd="http://www.plantuml.com/plantuml"
+[preprocessor.alerts]
