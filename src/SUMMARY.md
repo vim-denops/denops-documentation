@@ -17,4 +17,5 @@
   - [Properly create a virtual buffer](./tutorial/maze/properly-create-a-virtual-buffer.md)
   - [Properly configured the buffer](./tutorial/maze/properly-configured-the-buffer.md)
   - [Reduce the number of RPC calls](./tutorial/maze/reduce-the-number-of-rpc-calls.md)
+- [API Reference](./api-reference.md)
 - [FAQ](./faq.md)
