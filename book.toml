@@ -5,4 +5,7 @@ multilingual = false
 src = "src"
 title = "Denops Documentation"
 
+[output.html]
+default-theme = "coal"
+
 [preprocessor.alerts]
