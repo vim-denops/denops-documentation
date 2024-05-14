@@ -33,14 +33,14 @@ opener, generate a maze that fits the current window size, configure the buffer
 options to make it non-file readonly buffer, etc.
 
 ```ts:denops/denops-maze/main.ts
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
-import { batch, collect } from "https://deno.land/x/denops_std@v6.0.0/batch/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.0.0/function/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v6.0.0/option/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import { batch, collect } from "https://deno.land/x/denops_std@v6.5.0/batch/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
+import * as op from "https://deno.land/x/denops_std@v6.5.0/option/mod.ts";
 import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
-import { assert, is } from "https://deno.land/x/unknownutil@v3.14.1/mod.ts";
+import { assert, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     async maze(opener) {
       assert(opener, is.String);

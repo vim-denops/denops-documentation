@@ -91,15 +91,15 @@ easily call.
 In the Getting Started, we wrote the following code in the `main.ts` file:
 
 ```typescript
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     async hello() {
       await denops.cmd(`echo "Hello, Denops!"`);
     },
   };
-}
+};
 ```
 
 Let's break down this code step by step.
@@ -107,26 +107,26 @@ Let's break down this code step by step.
 ### About Imports
 
 ```typescript
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
 ```
 
-The first line imports the `Denops` type from the [denops_std] standard library.
-You can find detailed information about the library by checking the URL:
-`https://deno.land/x/denops_std@v6.0.0` (remove `/mod.ts`). We fixed the version
-in the import URL, so it's recommended to check for details and update to the
-latest version URL.
+The first line imports the `Entrypoint` type from the [denops_std] standard
+library. You can find detailed information about the library by checking the
+URL: `https://deno.land/x/denops_std@v6.5.0` (remove `/mod.ts`). We fixed the
+version in the import URL, so it's recommended to check for details and update
+to the latest version URL.
 
 Note that we use `import type` syntax, which is part of TypeScript's
 [Type-Only Imports and Export](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html).
-This syntax can be written as `import { type Denops }` with the same meaning.
-Using `import { Denops }` for a type-only import is also valid.
+This syntax can be written as `import { type Entrypoint }` with the same
+meaning. Using `import { Entrypoint }` for a type-only import is also valid.
 
 > [!NOTE]
 >
 > Denops plugins are dynamically imported, so there might be differences in
 > Denops versions between development and usage. Therefore, to minimize
-> differences between Denops versions, only the `Denops` type information is
-> exposed. The implementation can be found in
+> differences between Denops versions, only type information is exposed. The
+> implementation can be found in
 > [`denops/@denops-private/denops.ts`](https://github.com/vim-denops/denops.vim/blob/main/denops/%40denops-private/denops.ts),
 > but it is not publicly exposed for the reasons mentioned above.
 >
@@ -135,12 +135,29 @@ Using `import { Denops }` for a type-only import is also valid.
 > intended to be referenced only by [denops.vim] and [denops_std], so Denops
 > plugin developers don't need to use it directly.
 
+> [!NOTE]
+>
+> Prior to denops-std v6.5.0, the `Entrypoint` type was not defined thus
+> developers must define the `main` function as like
+>
+> ```typescript
+> import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
+>
+> export function main(denops: Denops): void {
+>   denops.dispatcher = {
+>     async hello() {
+>       await denops.cmd(`echo "Hello, Denops!"`);
+>     },
+>   };
+> }
+> ```
+
 ### About Entry Point
 
 ```typescript
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   // Omitted...
-}
+};
 ```
 
 The above code exports the `main` function. The `main` function is called by
@@ -211,11 +228,11 @@ recommended to use [denops_std] to call Vim's features in actual plugin
 development.
 
 For example, use
-[`function` module](https://deno.land/x/denops_std@v6.0.0/function/mod.ts) to
+[`function` module](https://deno.land/x/denops_std@v6.5.0/function/mod.ts) to
 call Vim's function instead of `denops.call` like:
 
 ```typescript
-import * as fn from "https://deno.land/x/denops_std@v6.0.0/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 
 // Bad (result1 is `unknown`)
 const result1 = await denops.call("expand", "%");

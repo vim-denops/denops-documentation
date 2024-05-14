@@ -22,15 +22,15 @@ $HOME
 Next, write the following TypeScript code in `main.ts`:
 
 ```typescript
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     async hello() {
       await denops.cmd(`echo "Hello, Denops!"`);
     },
   };
-}
+};
 ```
 
 ## Activate the Plugin

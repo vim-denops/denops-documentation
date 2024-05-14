@@ -10,12 +10,12 @@ proper virtual buffer that concretizes the buffer content. Let's modify the
 `main.ts` file as follows:
 
 ```typescript:denops/denops-maze/main.ts
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
-import * as buffer from "https://deno.land/x/denops_std@v6.0.0/buffer/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.0.0/function/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     async maze() {
       const { bufnr, winnr } = await buffer.open(denops, "maze://");
@@ -32,7 +32,7 @@ export function main(denops: Denops): void {
       await buffer.concrete(denops, bufnr);
     },
   };
-}
+};
 ```
 
 In this code, we use `buffer.open` to open a `maze://` buffer and get the buffer

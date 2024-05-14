@@ -7,10 +7,10 @@ the maze to a buffer so that users can yank the maze with daily Vim operations!
 Let's modify the code to make the generated maze output to a buffer.
 
 ```ts:denops/denops-maze/main.ts
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
 import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     async maze() {
       const maze = new Maze({}).generate();
@@ -19,7 +19,7 @@ export function main(denops: Denops): void {
       await denops.call("setline", 1, content.split(/\r?\n/g));
     },
   };
-}
+};
 ```
 
 In this code, `denops.cmd` executes the Vim command `enew` to open a new buffer

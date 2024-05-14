@@ -5,10 +5,10 @@ the `denops` instance passed to the plugin's `main` function. You can rewrite
 `main.ts` as follows to register the `DenopsHello` as a Vim command:
 
 ```ts:denops/denops-helloworld/main.ts
-import { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
-import { assert, is } from "https://deno.land/x/unknownutil@v3.14.1/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import { assert, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     async init() {
       // This is just an example.
@@ -23,7 +23,7 @@ export function main(denops: Denops): void {
       return `Hello, ${name || "Denops"}!`;
     },
   };
-}
+};
 ```
 
 Then, rewrite `plugin/denops-helloworld.vim` to automatically call the `init`

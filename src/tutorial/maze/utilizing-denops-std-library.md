@@ -20,13 +20,13 @@ command.
 First, modify the `denops/denops-helloworld/main.ts` file as follows:
 
 ```typescript:denops/denops-helloworld/main.ts
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
-import * as buffer from "https://deno.land/x/denops_std@v6.0.0/buffer/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.0.0/function/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v6.0.0/option/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
+import * as op from "https://deno.land/x/denops_std@v6.5.0/option/mod.ts";
 import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     async maze() {
       // Get the current window size
@@ -54,7 +54,7 @@ export function main(denops: Denops): void {
       await op.modifiable.setLocal(denops, false);
     },
   };
-}
+};
 ```
 
 Let's break down this code step by step.
