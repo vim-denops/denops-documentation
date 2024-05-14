@@ -29,10 +29,10 @@ directory tree will look like this:
 The content of the `denops/denops-maze/main.ts` file will be:
 
 ```typescript:denops/denops-maze/main.ts
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
 import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     maze() {
       const maze = new Maze({}).generate();
@@ -40,7 +40,7 @@ export function main(denops: Denops): void {
       console.log(content);
     },
   };
-}
+};
 ```
 
 The content of the `plugin/denops-maze.vim` file will be:

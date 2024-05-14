@@ -8,11 +8,11 @@ Let's modify the plugin to ensure the generated maze fits the current window
 size.
 
 ```typescript:denops/denops-helloworld/main.ts
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.0.0/function/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     async maze() {
       await denops.cmd("enew");
@@ -28,7 +28,7 @@ export function main(denops: Denops): void {
       await fn.setline(denops, 1, content.split(/\r?\n/g));
     },
   };
-}
+};
 ```
 
 In this code, we utilize the `function` module (aliased to `fn`) of `denops_std`

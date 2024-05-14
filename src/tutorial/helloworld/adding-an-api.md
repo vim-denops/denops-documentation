@@ -7,17 +7,17 @@ Open `denops/denops-helloworld/main.ts` and rewrite the content with the
 following code:
 
 ```typescript:denops/denops-helloworld/main.ts
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
-import { assert, is } from "https://deno.land/x/unknownutil@v3.14.1/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import { assert, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     hello(name) {
       assert(name, is.String);
       return `Hello, ${name || "Denops"}!`;
     },
   };
-}
+};
 ```
 
 The above code adds a new API `hello` to the plugin. The `hello` API takes a

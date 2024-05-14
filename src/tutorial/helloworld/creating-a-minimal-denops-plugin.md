@@ -32,11 +32,11 @@ denops-helloworld
 Here is the content of the `denops/denops-helloworld/main.ts` file:
 
 ```typescript:denops/denops-helloworld/main.ts
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
+import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   console.log("Hello, Denops from TypeScript!");
-}
+};
 ```
 
 > [!WARNING]
