@@ -5,15 +5,15 @@ For example, if a user executes the `:edit` command on the buffer, the maze will
 disappear. This is because Vim does not know how to reload the buffer content,
 and we must inform Vim about the content of the buffer when it is reloaded.
 
-In this section, we will use the `buffer` module of `denops_std` to create a
+In this section, we will use the `buffer` module of `@denops/std` to create a
 proper virtual buffer that concretizes the buffer content. Let's modify the
 `main.ts` file as follows:
 
 ```typescript:denops/denops-maze/main.ts
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import * as buffer from "jsr:@denops/std@7.0.0/buffer";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {

@@ -3,15 +3,15 @@
 As Denops employs RPC to interact with Vim, the volume of RPC calls
 significantly influences the plugin's performance. In this section, we aim to
 enhance performance by reducing the number of RPC calls using the `batch` module
-from `denops_std`. Let's revise the `main.ts` file as follows:
+from `@denops/std`. Let's revise the `main.ts` file as follows:
 
 ```typescript:denops/denops-maze/main.ts
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import { batch, collect } from "https://deno.land/x/denops_std@v6.5.0/batch/mod.ts";
-import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v6.5.0/option/mod.ts";
-import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import { batch, collect } from "jsr:@denops/std@7.0.0/batch";
+import * as buffer from "jsr:@denops/std@7.0.0/buffer";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as op from "jsr:@denops/std@7.0.0/option";
+import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
@@ -96,7 +96,7 @@ properly with `batch` and `collect`.
 
 In the next step, read API references or real-world plugins
 
-- [API reference](https://deno.land/x/denops_std/mod.ts)
+- [API reference](https://jsr.io/@denops/std)
 - [lambdalisue/gin.vim](https://github.com/lambdalisue/gin.vim)
 - [vim-skk/skkeleton](https://github.com/vim-skk/skkeleton)
 - [Shougo/ddu.vim](https://github.com/Shougo/ddu.vim)

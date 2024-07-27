@@ -5,8 +5,8 @@ the `denops` instance passed to the plugin's `main` function. You can rewrite
 `main.ts` as follows to register the `DenopsHello` as a Vim command:
 
 ```ts:denops/denops-helloworld/main.ts
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import { assert, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import { assert, is } from "jsr:@core/unknownutil@3.18.1";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
@@ -61,4 +61,4 @@ In the next step, follow the tutorial to learn how to develop a real Denops
 plugin.
 
 - [Tutorial (Maze)](../tutorial/maze/README.md)
-- [API reference](https://deno.land/x/denops_std/mod.ts)
+- [API reference](https://jsr.io/@denops/std)

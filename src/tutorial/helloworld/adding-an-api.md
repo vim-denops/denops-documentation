@@ -7,8 +7,8 @@ Open `denops/denops-helloworld/main.ts` and rewrite the content with the
 following code:
 
 ```typescript:denops/denops-helloworld/main.ts
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import { assert, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import { assert, is } from "jsr:@core/unknownutil@3.18.1";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
@@ -29,8 +29,8 @@ for details about User-Defined APIs.
 >
 > While Vim script does not facilitate types, Denops uses `unknown` types on the
 > interface between Vim and Denops. That's why we use
-> [unknownutil](https://deno.land/x/unknownutil) to ensure that the `name` is of
-> type `string` in the above code.
+> [unknownutil](https://jsr.io/@core/unknownutil) to ensure that the `name` is
+> of type `string` in the above code.
 
 Once you've updated the file, restart Vim, and execute the following command,
 you will see the message "Hello, Your name!".

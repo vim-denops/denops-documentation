@@ -76,11 +76,11 @@ You can check the health of Denops by running the `:checkhealth` command
 ==============================================================================
 denops: health#denops#check
 
-- Supported Deno version: `1.38.5`
-- Detected Deno version: `1.39.4`
+- Supported Deno version: `1.45.0`
+- Detected Deno version: `1.45.4`
 - OK Deno version check: passed
-- Supported Neovim version: `0.9.4`
-- Detected Neovim version: `0.9.5`
+- Supported Neovim version: `0.10.0`
+- Detected Neovim version: `0.10.0`
 - OK Neovim version check: passed
 - Denops status: `running`
 - OK Denops status check: passed

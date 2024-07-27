@@ -7,11 +7,11 @@ buffer after closure. Open the `main.ts` file and modify the `maze` method as
 follows:
 
 ```typescript:denops/denops-maze/main.ts
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v6.5.0/option/mod.ts";
-import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import * as buffer from "jsr:@denops/std@7.0.0/buffer";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as op from "jsr:@denops/std@7.0.0/option";
+import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {

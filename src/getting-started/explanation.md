@@ -91,7 +91,7 @@ easily call.
 In the Getting Started, we wrote the following code in the `main.ts` file:
 
 ```typescript
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
@@ -107,14 +107,14 @@ Let's break down this code step by step.
 ### About Imports
 
 ```typescript
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 ```
 
-The first line imports the `Entrypoint` type from the [denops_std] standard
+The first line imports the `Entrypoint` type from the [@denops/std] standard
 library. You can find detailed information about the library by checking the
-URL: `https://deno.land/x/denops_std@v6.5.0` (remove `/mod.ts`). We fixed the
-version in the import URL, so it's recommended to check for details and update
-to the latest version URL.
+URL: `https://jsr.io/@denops/std@7.0.0` (replace `jsr:` to `https://jsr.io/`).
+We fixed the version in the import URL, so it's recommended to check for details
+and update to the latest version URL.
 
 Note that we use `import type` syntax, which is part of TypeScript's
 [Type-Only Imports and Export](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html).
@@ -130,27 +130,10 @@ meaning. Using `import { Entrypoint }` for a type-only import is also valid.
 > [`denops/@denops-private/denops.ts`](https://github.com/vim-denops/denops.vim/blob/main/denops/%40denops-private/denops.ts),
 > but it is not publicly exposed for the reasons mentioned above.
 >
-> This type information is provided by [denops_core], and [denops_std] simply
-> re-exports the type information from [denops_core]. However, [denops_core] is
-> intended to be referenced only by [denops.vim] and [denops_std], so Denops
+> This type information is provided by [@denops/core], and [@denops/std] simply
+> re-exports the type information from [@denops/core]. However, [@denops/core]
+> is intended to be referenced only by [denops.vim] and [@denops/std], so Denops
 > plugin developers don't need to use it directly.
-
-> [!NOTE]
->
-> Prior to denops-std v6.5.0, the `Entrypoint` type was not defined thus
-> developers must define the `main` function as like
->
-> ```typescript
-> import type { Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
->
-> export function main(denops: Denops): void {
->   denops.dispatcher = {
->     async hello() {
->       await denops.cmd(`echo "Hello, Denops!"`);
->     },
->   };
-> }
-> ```
 
 ### About Entry Point
 
@@ -162,8 +145,8 @@ export const main: Entrypoint = (denops) => {
 
 The above code exports the `main` function. The `main` function is called by
 Denops, and it takes the
-[Denops instance](https://deno.land/x/denops_std/mod.ts?s=Denops) (`denops`) as
-an argument. Denops plugins use this `denops` to add user-defined APIs or call
+[Denops instance](https://jsr.io/@denops/core/doc/~/Denops) (`denops`) as an
+argument. Denops plugins use this `denops` to add user-defined APIs or call
 Vim's features.
 
 ### About User-Defined APIs
@@ -222,17 +205,17 @@ several methods:
 | `eval`     | Evaluate a Vim expression and returns the result. If `ctx` is provided, it is expanded as local variables. |
 | `dispatch` | Calls a user-defined API of another Denops plugin and returns the result.                                  |
 
-Although `denops` provides low-level interfaces, [denops_std] combines these
+Although `denops` provides low-level interfaces, [@denops/std] combines these
 low-level interfaces to offer higher-level interfaces. Therefore, it's
-recommended to use [denops_std] to call Vim's features in actual plugin
+recommended to use [@denops/std] to call Vim's features in actual plugin
 development.
 
 For example, use
-[`function` module](https://deno.land/x/denops_std@v6.5.0/function/mod.ts) to
-call Vim's function instead of `denops.call` like:
+[`function` module](https://jsr.io/@denops/std@7.0.0/doc/function/~) to call
+Vim's function instead of `denops.call` like:
 
 ```typescript
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
+import * as fn from "jsr:@denops/std@7.0.0/function";
 
 // Bad (result1 is `unknown`)
 const result1 = await denops.call("expand", "%");
@@ -251,8 +234,8 @@ plugin.
 
 - [Tutorial (Hello World)](../tutorial/helloworld/README.md)
 - [Tutorial (Maze)](../tutorial/maze/README.md)
-- [API reference](https://deno.land/x/denops_std/mod.ts)
+- [API reference](https://jsr.io/@denops/std)
 
 [denops.vim]: https://github.com/vim-denops/denops.vim
-[denops_std]: https://deno.land/x/denops_std
-[denops_core]: https://deno.land/x/denops_core
+[@denops/std]: https://jsr.io/@denops/std
+[@denops/core]: https://jsr.io/@denops/core
