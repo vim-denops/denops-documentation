@@ -32,7 +32,7 @@ denops-helloworld
 Here is the content of the `denops/denops-helloworld/main.ts` file:
 
 ```typescript:denops/denops-helloworld/main.ts
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 
 export const main: Entrypoint = (denops) => {
   console.log("Hello, Denops from TypeScript!");
@@ -45,7 +45,7 @@ export const main: Entrypoint = (denops) => {
 > `console.error`, etc.) for debug output. The content will be echoed to Vim.
 > However, it is not recommended to use `console.log` in production code.
 > Instead, use `denops.cmd("echo '...'")` or the `echo` function in the `helper`
-> module of the `denops_std` library.
+> module of the `@denops/std` library.
 
 Once you've created the file, restart Vim, and "Hello, Denops from TypeScript!"
 will be displayed on Vim startup.

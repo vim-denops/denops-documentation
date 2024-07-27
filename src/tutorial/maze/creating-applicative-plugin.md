@@ -33,12 +33,12 @@ opener, generate a maze that fits the current window size, configure the buffer
 options to make it non-file readonly buffer, etc.
 
 ```ts:denops/denops-maze/main.ts
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import { batch, collect } from "https://deno.land/x/denops_std@v6.5.0/batch/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v6.5.0/option/mod.ts";
-import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
-import { assert, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import { batch, collect } from "jsr:@denops/std@7.0.0/batch";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as op from "jsr:@denops/std@7.0.0/option";
+import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
+import { assert, is } from "jsr:@core/unknownutil@3.18.1";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
@@ -68,16 +68,15 @@ export const main: Entrypoint = (denops) => {
 };
 ```
 
-In above code, we utilize the following denops_std modules:
+In above code, we utilize the following `@denops/std` modules:
 
 - `batch` and `collect` functions in a `batch` module to execute multiple
   commands in a single RPC
 - `function` module to call Vim's functions
 - `option` module to get and set Vim's options
 
-See the
-[denops_std API document](https://doc.deno.land/https/deno.land/x/denops_std/mod.ts)
-for more details about each modules.
+See the [denops_std API document](https://jsr.io/@denops/std) for more details
+about each modules.
 
 That's it. Now you can see a smaller maze shown on the window with `:Maze`
 command.

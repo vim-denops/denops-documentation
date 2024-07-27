@@ -8,9 +8,9 @@ Let's modify the plugin to ensure the generated maze fits the current window
 size.
 
 ```typescript:denops/denops-helloworld/main.ts
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
@@ -31,10 +31,10 @@ export const main: Entrypoint = (denops) => {
 };
 ```
 
-In this code, we utilize the `function` module (aliased to `fn`) of `denops_std`
-(Denops Standard Library) to call `winwidth()`, `winheight()`, and `setline()`
-functions. Then, we create a maze that fits the current window size and write it
-to the buffer.
+In this code, we utilize the `function` module (aliased to `fn`) of
+`@denops/std` (Denops Standard Library) to call `winwidth()`, `winheight()`, and
+`setline()` functions. Then, we create a maze that fits the current window size
+and write it to the buffer.
 
 So why do we use the `function` module instead of `denops.call`? With
 `denops.call`, developers must know the function name, arguments, return type,
@@ -44,13 +44,13 @@ checking, etc. It is more convenient and safe to use the `function` module.
 
 > [!TIP]
 >
-> The `function` module of the `denops_std` library provides a set of functions
+> The `function` module of the `@denops/std` library provides a set of functions
 > that are available on both Vim and Neovim. If you'd like to use Vim or Neovim
 > only functions, use the `vim` or `nvim` module under the `function` module
 > instead.
 >
 > See the
-> [function module of denops_std API document](https://doc.deno.land/https/deno.land/x/denops_std/function/mod.ts)
+> [function module of @denops/std API document](https://jsr.io/@denops/std@7.0.0/doc/function/~)
 > for more details.
 
 Restart Vim, rerun the `:Maze` command, and then you can see:

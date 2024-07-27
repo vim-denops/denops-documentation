@@ -21,8 +21,8 @@ $HOME
 
 Next, write the following TypeScript code in `main.ts`:
 
-```typescript
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+```typescript:denops/denops-getting-started/main.ts
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {

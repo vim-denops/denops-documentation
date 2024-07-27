@@ -2,7 +2,7 @@
 
 Certainly, starting with coding a maze generation algorithm would be nice.
 However, since you're now using Deno, you can conveniently employ a third-party
-library called [maze_generator](https://deno.land/x/maze_generator@v0.4.0).
+library called [maze_generator](https://github.com/mjrlowe/maze_generator).
 Let's define a `Maze` command similar to `DenopsHello`; `Maze` generates a maze
 and outputs it.
 
@@ -29,8 +29,8 @@ directory tree will look like this:
 The content of the `denops/denops-maze/main.ts` file will be:
 
 ```typescript:denops/denops-maze/main.ts
-import type { Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import { Maze } from "https://deno.land/x/maze_generator@v0.4.0/mod.js";
+import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
