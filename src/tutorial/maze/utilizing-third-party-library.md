@@ -29,8 +29,8 @@ directory tree will look like this:
 The content of the `denops/denops-maze/main.ts` file will be:
 
 ```typescript,title=denops/denops-maze/main.ts
-import type { Entrypoint } from "jsr:@denops/std@7.0.0";
-import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
+import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
+import { Maze } from "npm:@thewizardbear/maze_generator@^0.4.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {

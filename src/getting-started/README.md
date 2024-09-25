@@ -22,7 +22,7 @@ $HOME
 Next, write the following TypeScript code in `main.ts`:
 
 ```typescript,title=denops/denops-getting-started/main.ts
-import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {

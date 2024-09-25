@@ -33,12 +33,12 @@ opener, generate a maze that fits the current window size, configure the buffer
 options to make it non-file readonly buffer, etc.
 
 ```typescript,title=denops/denops-maze/main.ts
-import type { Entrypoint } from "jsr:@denops/std@7.0.0";
-import { batch, collect } from "jsr:@denops/std@7.0.0/batch";
-import * as fn from "jsr:@denops/std@7.0.0/function";
-import * as op from "jsr:@denops/std@7.0.0/option";
-import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
-import { assert, is } from "jsr:@core/unknownutil@3.18.1";
+import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
+import { batch, collect } from "jsr:@denops/std@^7.0.0/batch";
+import * as fn from "jsr:@denops/std@^7.0.0/function";
+import * as op from "jsr:@denops/std@^7.0.0/option";
+import { Maze } from "npm:@thewizardbear/maze_generator@^0.4.0";
+import { assert, is } from "jsr:@core/unknownutil@^4.3.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {

@@ -5,8 +5,8 @@ the `denops` instance passed to the plugin's `main` function. You can rewrite
 `main.ts` as follows to register the `DenopsHello` as a Vim command:
 
 ```typescript,title=denops/denops-helloworld/main.ts
-import type { Entrypoint } from "jsr:@denops/std@7.0.0";
-import { assert, is } from "jsr:@core/unknownutil@3.18.1";
+import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
+import { assert, is } from "jsr:@core/unknownutil@^4.3.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
