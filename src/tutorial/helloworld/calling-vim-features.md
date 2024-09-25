@@ -4,7 +4,7 @@ If you want to use a Vim feature from your Denops plugin, you can call it via
 the `denops` instance passed to the plugin's `main` function. You can rewrite
 `main.ts` as follows to register the `DenopsHello` as a Vim command:
 
-```ts:denops/denops-helloworld/main.ts
+```typescript,title=denops/denops-helloworld/main.ts
 import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 import { assert, is } from "jsr:@core/unknownutil@3.18.1";
 
@@ -29,7 +29,7 @@ export const main: Entrypoint = (denops) => {
 Then, rewrite `plugin/denops-helloworld.vim` to automatically call the `init`
 API on plugin load via the `DenopsPluginPost:{plugin_name}` autocmd:
 
-```vim:plugin/denops-helloworld.vim
+```vim,title=plugin/denops-helloworld.vim
 if exists('g:loaded_denops_helloworld')
   finish
 endif

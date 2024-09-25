@@ -28,7 +28,7 @@ directory tree will look like this:
 
 The content of the `denops/denops-maze/main.ts` file will be:
 
-```typescript:denops/denops-maze/main.ts
+```typescript,title=denops/denops-maze/main.ts
 import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
 
@@ -45,7 +45,7 @@ export const main: Entrypoint = (denops) => {
 
 The content of the `plugin/denops-maze.vim` file will be:
 
-```vim:plugin/denops-maze.vim
+```vim,title=plugin/denops-maze.vim
 if exists('g:loaded_denops_maze')
   finish
 endif
@@ -70,7 +70,7 @@ augroup END
 > `denops#plugin#wait_async()` in the function to wait for plugin load, like
 > this:
 >
-> ```vim
+> ```vim,title=plugin/denops-maze.vim
 > if exists('g:loaded_denops_maze')
 >   finish
 > endif

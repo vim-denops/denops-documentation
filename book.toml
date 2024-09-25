@@ -7,5 +7,7 @@ title = "Denops Documentation"
 
 [output.html]
 default-theme = "coal"
+additional-js = ["assets/codeblock-title.js"]
+additional-css = ["assets/codeblock-title.css"]
 
 [preprocessor.alerts]

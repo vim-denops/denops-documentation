@@ -21,7 +21,7 @@ $HOME
 
 Next, write the following TypeScript code in `main.ts`:
 
-```typescript:denops/denops-getting-started/main.ts
+```typescript,title=denops/denops-getting-started/main.ts
 import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 
 export const main: Entrypoint = (denops) => {
@@ -38,13 +38,13 @@ export const main: Entrypoint = (denops) => {
 Add the following line to your Vim or Neovim configuration file (e.g.,
 `~/.vimrc` or `~/.config/nvim/init.vim`):
 
-```vim
+```vim,title=~/.vimrc
 set runtimepath+=~/denops-getting-started
 ```
 
 Or Neovim Lua configuration file (e.g., `~/.config/nvim/init.lua`):
 
-```lua
+```lua,title=~/.config/nvim/init.lua
 vim.opt.runtimepath:append("~/denops-getting-started")
 ```
 

@@ -5,7 +5,7 @@ significantly influences the plugin's performance. In this section, we aim to
 enhance performance by reducing the number of RPC calls using the `batch` module
 from `@denops/std`. Let's revise the `main.ts` file as follows:
 
-```typescript:denops/denops-maze/main.ts
+```typescript,title=denops/denops-maze/main.ts
 import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 import { batch, collect } from "jsr:@denops/std@7.0.0/batch";
 import * as buffer from "jsr:@denops/std@7.0.0/buffer";

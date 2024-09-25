@@ -6,7 +6,7 @@ the maze to a buffer so that users can yank the maze with daily Vim operations!
 
 Let's modify the code to make the generated maze output to a buffer.
 
-```ts:denops/denops-maze/main.ts
+```typescript,title=denops/denops-maze/main.ts
 import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
 

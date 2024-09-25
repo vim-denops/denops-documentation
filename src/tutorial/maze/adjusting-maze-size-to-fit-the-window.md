@@ -7,7 +7,7 @@ to have a maze that fits the current window size.
 Let's modify the plugin to ensure the generated maze fits the current window
 size.
 
-```typescript:denops/denops-helloworld/main.ts
+```typescript,title=denops/denops-helloworld/main.ts
 import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 import * as fn from "jsr:@denops/std@7.0.0/function";
 import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";

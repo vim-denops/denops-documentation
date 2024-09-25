@@ -6,7 +6,7 @@ configure the buffer options to make the buffer non-modifiable and remove the
 buffer after closure. Open the `main.ts` file and modify the `maze` method as
 follows:
 
-```typescript:denops/denops-maze/main.ts
+```typescript,title=denops/denops-maze/main.ts
 import type { Entrypoint } from "jsr:@denops/std@7.0.0";
 import * as buffer from "jsr:@denops/std@7.0.0/buffer";
 import * as fn from "jsr:@denops/std@7.0.0/function";
