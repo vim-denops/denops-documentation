@@ -91,7 +91,7 @@ easily call.
 In the Getting Started, we wrote the following code in the `main.ts` file:
 
 ```typescript
-import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
@@ -107,7 +107,7 @@ Let's break down this code step by step.
 ### About Imports
 
 ```typescript
-import type { Entrypoint } from "jsr:@denops/std@7.0.0";
+import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
 ```
 
 The first line imports the `Entrypoint` type from the [@denops/std] standard
@@ -215,7 +215,7 @@ For example, use
 Vim's function instead of `denops.call` like:
 
 ```typescript
-import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as fn from "jsr:@denops/std@^7.0.0/function";
 
 // Bad (result1 is `unknown`)
 const result1 = await denops.call("expand", "%");

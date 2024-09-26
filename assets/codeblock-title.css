@@ -1,0 +1,8 @@
+.codeblock-title {
+  display: block;
+  margin: 0;
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+  color: color-mix(in srgb, var(--fg), #777 50%);
+  background-color: color-mix(in srgb, var(--bg), #777 20%);
+}

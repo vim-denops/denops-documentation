@@ -13,7 +13,7 @@ denops-helloworld
 
 The content of the `plugin/denops-helloworld.vim` file is as follows:
 
-```vim:plugin/denops-helloworld.vim
+```vim,title=plugin/denops-helloworld.vim
 if exists('g:loaded_denops_helloworld')
   finish
 endif
@@ -45,13 +45,13 @@ Upon startup, Vim searches and loads files named `plugin/*.vim` in directories
 specified in `runtimepath`. To activate the plugin, add the following line to
 your Vim configuration file (e.g., `~/.vimrc` or `~/.config/nvim/init.vim`):
 
-```vim
+```vim,title=~/.vimrc
 set runtimepath+=~/denops-helloworld
 ```
 
 For Neovim's Lua configuration file (e.g., `~/.config/nvim/init.lua`), use:
 
-```lua
+```lua,title=~/.config/nvim/init.lua
 vim.opt.runtimepath:append("~/denops-helloworld")
 ```
 

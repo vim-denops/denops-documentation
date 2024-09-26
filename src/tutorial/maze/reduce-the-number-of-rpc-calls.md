@@ -5,13 +5,13 @@ significantly influences the plugin's performance. In this section, we aim to
 enhance performance by reducing the number of RPC calls using the `batch` module
 from `@denops/std`. Let's revise the `main.ts` file as follows:
 
-```typescript:denops/denops-maze/main.ts
-import type { Entrypoint } from "jsr:@denops/std@7.0.0";
-import { batch, collect } from "jsr:@denops/std@7.0.0/batch";
-import * as buffer from "jsr:@denops/std@7.0.0/buffer";
-import * as fn from "jsr:@denops/std@7.0.0/function";
-import * as op from "jsr:@denops/std@7.0.0/option";
-import { Maze } from "npm:@thewizardbear/maze_generator@0.4.0";
+```typescript,title=denops/denops-maze/main.ts
+import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
+import { batch, collect } from "jsr:@denops/std@^7.0.0/batch";
+import * as buffer from "jsr:@denops/std@^7.0.0/buffer";
+import * as fn from "jsr:@denops/std@^7.0.0/function";
+import * as op from "jsr:@denops/std@^7.0.0/option";
+import { Maze } from "npm:@thewizardbear/maze_generator@^0.4.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {

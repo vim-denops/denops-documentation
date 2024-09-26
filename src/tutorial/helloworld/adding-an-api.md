@@ -6,9 +6,9 @@ will enhance the plugin by adding an API.
 Open `denops/denops-helloworld/main.ts` and rewrite the content with the
 following code:
 
-```typescript:denops/denops-helloworld/main.ts
-import type { Entrypoint } from "jsr:@denops/std@7.0.0";
-import { assert, is } from "jsr:@core/unknownutil@3.18.1";
+```typescript,title=denops/denops-helloworld/main.ts
+import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
+import { assert, is } from "jsr:@core/unknownutil@^4.3.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
