@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/cache@v4
         with:
           path: |
@@ -26,18 +27,24 @@ jobs:
             target/
             .tools/
           key: ${{ runner.os }}-cargo
+
       - uses: denoland/setup-deno@v1.1.4
         with:
           deno-version: ${{ env.DENO_VERSION }}
-      - name: Install mdBook
-        run: |
-          curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
-          rustup update
-          cargo install --force --version ${MDBOOK_VERSION} mdbook
-          cargo install --force mdbook-alerts
+
+      - name: Install mdbook and cargo-binstall binaries
+        uses: taiki-e/install-action@v2
+        with:
+          tool: mdbook,cargo-binstall
+
+      - name: Install mdbook extensions
+        run: cargo binstall -y mdbook-alerts
+
       - name: Build with mdBook
         run: mdbook build
+
       - name: Format
         run: deno fmt --check
+
       - name: Misspell
         uses: reviewdog/action-misspell@v1.15.0
