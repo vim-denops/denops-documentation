@@ -232,8 +232,8 @@ auto-completion and type checking provided by LSP (Language Server Protocol).
 In the next step, follow the tutorial to learn how to develop a minimum Denops
 plugin.
 
-- [Tutorial (Hello World)](../tutorial/helloworld/README.md)
-- [Tutorial (Maze)](../tutorial/maze/README.md)
+- [Tutorial (Hello World)](/tutorial/helloworld/index.md)
+- [Tutorial (Maze)](/tutorial/maze/index.html)
 - [API reference](https://jsr.io/@denops/std)
 
 [denops.vim]: https://github.com/vim-denops/denops.vim
