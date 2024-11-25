@@ -60,5 +60,5 @@ as a result.
 In the next step, follow the tutorial to learn how to develop a real Denops
 plugin.
 
-- [Tutorial (Maze)](../tutorial/maze/README.md)
+- [Tutorial (Maze)](/tutorial/maze/index.html)
 - [API reference](https://jsr.io/@denops/std)
