@@ -10,10 +10,10 @@ proper virtual buffer that concretizes the buffer content. Let's modify the
 `main.ts` file as follows:
 
 ```typescript,title=denops/denops-maze/main.ts
-import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
-import * as buffer from "jsr:@denops/std@^7.0.0/buffer";
-import * as fn from "jsr:@denops/std@^7.0.0/function";
-import { Maze } from "npm:@thewizardbear/maze_generator@^0.4.0";
+import type { Entrypoint } from "@denops/std";
+import * as buffer from "@denops/std/buffer";
+import * as fn from "@denops/std/function";
+import { Maze } from "maze_generator";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {

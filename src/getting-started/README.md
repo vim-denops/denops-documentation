@@ -22,7 +22,7 @@ $HOME
 Next, write the following TypeScript code in `main.ts`:
 
 ```typescript,title=denops/denops-getting-started/main.ts
-import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
+import type { Entrypoint } from "jsr:@denops/std@^8.0.0";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
@@ -32,6 +32,12 @@ export const main: Entrypoint = (denops) => {
   };
 };
 ```
+
+> [!NOTE]
+>
+> This example uses direct URL imports for simplicity. The recommended approach
+> for managing dependencies is to use `deno.jsonc` with import maps, which
+> you'll learn about in the [tutorials](../tutorial.md).
 
 ## Activate the Plugin
 

@@ -19,18 +19,41 @@ directory tree will look like this:
 
 ```
 ~/denops-maze
+├── deno.jsonc
 ├── denops
 │    └── denops-maze
+│           ├── deno.jsonc
 │           └── main.ts
 └── plugin
      └── denops-maze.vim
 ```
 
+First, create the root `deno.jsonc` file for workspace configuration:
+
+```json,title=deno.jsonc
+{
+  "workspace": [
+    "./denops/denops-maze"
+  ]
+}
+```
+
+Then, create the `denops/denops-maze/deno.jsonc` file for runtime dependencies:
+
+```json,title=denops/denops-maze/deno.jsonc
+{
+  "imports": {
+    "@denops/std": "jsr:@denops/std@^8.0.0",
+    "maze_generator": "npm:@thewizardbear/maze_generator@^0.4.0"
+  }
+}
+```
+
 The content of the `denops/denops-maze/main.ts` file will be:
 
 ```typescript,title=denops/denops-maze/main.ts
-import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
-import { Maze } from "npm:@thewizardbear/maze_generator@^0.4.0";
+import type { Entrypoint } from "@denops/std";
+import { Maze } from "maze_generator";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {

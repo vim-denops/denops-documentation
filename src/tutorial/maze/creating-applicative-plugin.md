@@ -28,17 +28,30 @@ augroup denops_maze
 augroup END
 ```
 
-Then, modify the `main.ts` file to accept the optional argument for a custom
+Then, update your `denops/denops-maze/deno.jsonc` to include the unknownutil
+dependency:
+
+```json,title=denops/denops-maze/deno.jsonc
+{
+  "imports": {
+    "@denops/std": "jsr:@denops/std@^8.0.0",
+    "@core/unknownutil": "jsr:@core/unknownutil@^4.3.0",
+    "maze_generator": "npm:@thewizardbear/maze_generator@^0.4.0"
+  }
+}
+```
+
+Now modify the `main.ts` file to accept the optional argument for a custom
 opener, generate a maze that fits the current window size, configure the buffer
 options to make it non-file readonly buffer, etc.
 
 ```typescript,title=denops/denops-maze/main.ts
-import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
-import { batch, collect } from "jsr:@denops/std@^7.0.0/batch";
-import * as fn from "jsr:@denops/std@^7.0.0/function";
-import * as op from "jsr:@denops/std@^7.0.0/option";
-import { Maze } from "npm:@thewizardbear/maze_generator@^0.4.0";
-import { assert, is } from "jsr:@core/unknownutil@^4.3.0";
+import type { Entrypoint } from "@denops/std";
+import { batch, collect } from "@denops/std/batch";
+import * as fn from "@denops/std/function";
+import * as op from "@denops/std/option";
+import { Maze } from "maze_generator";
+import { assert, is } from "@core/unknownutil";
 
 export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
