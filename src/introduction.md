@@ -18,9 +18,10 @@ features:
 - **Unified codebase for Vim and Neovim**:<br>Denops provides a unified API for
   both Vim and Neovim. You can write a plugin that functions on both Vim and
   Neovim with a single codebase.
-- **No worries about dependency management**:<br>Deno includes a built-in
-  dependency management system, allowing developers to write plugins with
-  third-party libraries without concerns about dependency management.
+- **Modern dependency management**:<br>Deno's built-in dependency system with
+  import maps provides clean, maintainable dependency management. The workspace
+  configuration ensures each plugin's dependencies are isolated, preventing
+  conflicts when multiple Denops plugins are installed together.
 - **Simple and efficient code**:<br>Deno utilizes the V8 engine, significantly
   faster than Vim script. You can write a plugin with straightforward code,
   without the need for complex optimizations solely for performance.

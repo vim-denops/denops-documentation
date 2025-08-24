@@ -7,7 +7,7 @@ Open `denops/denops-helloworld/main.ts` and rewrite the content with the
 following code:
 
 ```typescript,title=denops/denops-helloworld/main.ts
-import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
+import type { Entrypoint } from "jsr:@denops/std@^8.0.0";
 import { assert, is } from "jsr:@core/unknownutil@^4.3.0";
 
 export const main: Entrypoint = (denops) => {

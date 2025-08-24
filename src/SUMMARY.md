@@ -10,6 +10,7 @@
   - [Creating a minimal Denops plugin](./tutorial/helloworld/creating-a-minimal-denops-plugin.md)
   - [Adding Denops APIs](./tutorial/helloworld/adding-an-api.md)
   - [Calling Vim features](./tutorial/helloworld/calling-vim-features.md)
+  - [Managing dependencies](./tutorial/helloworld/managing-dependencies.md)
 - [Tutorial (Maze)](./tutorial/maze/README.md)
   - [Utilizing third-party library](./tutorial/maze/utilizing-third-party-library.md)
   - [Outputting content to buffer](./tutorial/maze/outputting-content-to-buffer.md)

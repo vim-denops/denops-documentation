@@ -32,7 +32,7 @@ denops-helloworld
 Here is the content of the `denops/denops-helloworld/main.ts` file:
 
 ```typescript,title=denops/denops-helloworld/main.ts
-import type { Entrypoint } from "jsr:@denops/std@^7.0.0";
+import type { Entrypoint } from "jsr:@denops/std@^8.0.0";
 
 export const main: Entrypoint = (denops) => {
   console.log("Hello, Denops from TypeScript!");
